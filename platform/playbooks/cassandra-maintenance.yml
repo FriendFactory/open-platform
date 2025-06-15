@@ -1,0 +1,34 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  vars:
+    maintenance_command: { "test": "nodetool compact", "prod": "nodetool repair && nodetool compact" }
+
+  vars_prompt:
+    - name: env_name
+      prompt: "pick your environment, test or prod?"
+      default: test
+      private: no
+    - name: hour
+      prompt: "Pick an hour of the day [0-23]"
+      default: 22
+      private: no
+    - name: weekday
+      prompt: "Pick a weekday [0-6]"
+      default: 2
+      private: no
+
+  tasks:
+    - name: install cron
+      dnf: 
+        name: 
+          - cronie
+
+    - name: Cron environments
+      cron: name=PATH env=yes value=/usr/lib/sysstat:/usr/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin cron_file=/etc/cron.d/cassandra_maintenance user=root
+
+    - name: Set up Cassandra Maintenance
+      cron: name="Cassandra Maintenance" minute="0" hour={{ hour }} weekday={{ weekday }} cron_file="/etc/cron.d/cassandra_maintenance" user=root job="{{ maintenance_command[env_name] }}"
+

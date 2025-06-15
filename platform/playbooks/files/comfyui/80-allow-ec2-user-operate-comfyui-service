@@ -1,0 +1,5 @@
+# User rules for ec2-user
+ec2-user ALL=NOPASSWD: /bin/systemctl restart comfyui.service
+ec2-user ALL=NOPASSWD: /bin/systemctl start comfyui.service
+ec2-user ALL=NOPASSWD: /bin/systemctl stop comfyui.service
+ec2-user ALL=NOPASSWD: /bin/systemctl status comfyui.service

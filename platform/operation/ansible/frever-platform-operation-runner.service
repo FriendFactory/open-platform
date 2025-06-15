@@ -1,0 +1,15 @@
+[Unit]
+Description=The platform-operation application
+Wants=network.target cloud-config.service
+After=network.target syslog.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+ExecStart=/home/ec2-user/frever-platform-operation-runner
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=platform-operation
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,83 @@
+{
+  "1": {
+    "inputs": {
+      "key": "pipe201_lip-sync_svd_unet_model",
+      "tag": "",
+      "data": [
+        "41",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "key": "pipe203_lip-sync_svd_clip_vision",
+      "tag": "",
+      "data": [
+        "40",
+        1
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "6": {
+    "inputs": {
+      "key": "pipe204_lip-sync_svd_vae",
+      "tag": "",
+      "data": [
+        "40",
+        2
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "40": {
+    "inputs": {
+      "ckpt_name": "svd_xt_1_1.safetensors"
+    },
+    "class_type": "ImageOnlyCheckpointLoader",
+    "_meta": {
+      "title": "Image Only Checkpoint Loader (img2vid model)"
+    }
+  },
+  "41": {
+    "inputs": {
+      "sonic_unet": "unet.pth",
+      "ip_audio_scale": 1,
+      "use_interframe": true,
+      "dtype": "fp16",
+      "model": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "SONICTLoader",
+    "_meta": {
+      "title": "SONICTLoader"
+    }
+  },
+  "42": {
+    "inputs": {
+      "key": "pipe202_lip-sync_svd_unet_dtype",
+      "tag": "",
+      "data": [
+        "41",
+        1
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  }
+}

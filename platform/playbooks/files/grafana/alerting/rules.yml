@@ -1,0 +1,71 @@
+apiVersion: 1
+
+groups:
+  - orgId: 1
+    name: loki-logging
+    folder: loki
+    interval: 60s
+    rules:
+      - uid: error_log_alert
+        title: error_log_alert
+        condition: errorMessagesMoreThan
+        data:
+          - refId: errorMessages
+            datasourceUid: '{{ env }}-loki'
+            queryType: range
+            relativeTimeRange:
+              from: 600
+              to: 0
+            model:
+              hide: false
+              editorMode: "builder"
+              expr: "sum by(app) (count_over_time({namespace=~\"app.*|{{ env }}\"} |~ `\\s{4}at\\s{1}|fail:|error:` [$__interval]))"
+              intervalMs: 1000
+              maxDataPoints: 43200
+              queryType: range
+              refId: errorMessages
+          - refId: errorMessagesMoreThan
+            relativeTimeRange:
+              from: 0
+              to: 0
+            datasourceUid: "-100"
+            model:
+              conditions:
+                - evaluator:
+                    params:
+                      - 0
+                    type: gt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - errorMessages
+                  reducer:
+                    type: last
+                  type: query
+              datasource:
+                type: __expr__
+                uid: '-100'
+              expression: errorMessages
+              hide: false
+              intervalMs: 1000
+              maxDataPoints: 43200
+              refId: errorMessagesMoreThan
+              type: classic_conditions
+        noDataState: OK
+        for: 60s
+        annotations:
+          Environment: {{ env }}
+          Severity: severe
+          ContextInformation: |
+          {%- raw %}
+            {{- with $values -}}
+            {{- range $k, $v := . }}
+               App(Service): {{ $v.Labels.app }}
+               Error Log Count: {{ $v }}
+            {{- end -}}
+            {{- end -}}
+          {% endraw +%}
+        labels:
+          environment: {{ env }}
+          severity: severe

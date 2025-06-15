@@ -1,0 +1,76 @@
+- name: Provision Verdaccio
+  hosts: all
+  gather_facts: false
+  vars:
+    node_version: 16.15.0
+    verdaccio_installation_path: /home/ec2-user/.nvm/versions/node/v{{ node_version }}/lib/node_modules/verdaccio
+    verdaccio_static_content_path: /home/ec2-user/verdaccio
+    verdaccio_bin_path: /home/ec2-user/.nvm/versions/node/v16.15.0/bin/verdaccio
+  handlers:
+    - name: restart rsyslog
+      become: true
+      ansible.builtin.service:
+        name: rsyslog
+        state: restarted
+  tasks:
+    - name: Install nvm
+      ansible.builtin.shell: |
+        curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | sh
+        creates=/home/ec2-user/.nvm/nvm.sh
+    - name: Install node and set version
+      ansible.builtin.shell: |
+        /bin/bash -c "source ~/.nvm/nvm.sh && nvm install {{ node_version }} && nvm alias default {{ node_version }}"
+        creates=/home/ec2-user/.nvm/alias
+    - name: Install "verdaccio" node.js package globally.
+      ansible.builtin.shell: |
+        /bin/bash -c "source ~/.nvm/nvm.sh && npm install -g verdaccio"
+        creates={{ verdaccio_installation_path }}
+    - name: copy config.yaml file to verdaccio conf folder
+      template:
+        src=./config.yaml
+        dest={{ verdaccio_static_content_path }}/conf/config.yaml
+    - name: copy htpasswd file to verdaccio conf folder
+      copy:
+        src: ./htpasswd
+        dest: "{{ verdaccio_static_content_path }}/conf/"
+        mode: '0600'
+    - name: Setup syslog
+      copy:
+        src: 51-verdaccio.conf
+        dest: /etc/rsyslog.d
+        owner: root
+        group: root
+        mode: '0644'
+      become: true
+      notify:
+        - restart rsyslog
+    - name: Setup logrotate
+      become: true
+      copy:
+        src: verdaccio-logrotation
+        dest: /etc/logrotate.d/verdaccio
+        owner: root
+        group: root
+        mode: '0644'
+    - name: Copy verdaccio.sh
+      template:
+        src: verdaccio.sh
+        dest: /home/ec2-user
+        mode: '0755'
+    - name: Create systemd service
+      become: true
+      copy:
+        src: verdaccio.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+    - name: daemon-reload
+      become: true
+      ansible.builtin.systemd:
+        daemon_reload: yes
+    - name: restart service
+      become: true
+      ansible.builtin.service:
+        name: verdaccio
+        enabled: yes
+        state: restarted

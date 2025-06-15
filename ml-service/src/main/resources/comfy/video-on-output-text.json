@@ -1,0 +1,1006 @@
+{
+  "8": {
+    "inputs": {
+      "frame_rate": 30,
+      "loop_count": 0,
+      "filename_prefix": "___outputPrefix___",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": true,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "21",
+        0
+      ],
+      "audio": [
+        "21",
+        1
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "21": {
+    "inputs": {
+      "mode": "pingpong",
+      "fps": 30,
+      "silent_padding_sec": 0.1,
+      "images": [
+        "25",
+        0
+      ],
+      "audio": [
+        "86",
+        0
+      ]
+    },
+    "class_type": "D_VideoLengthAdjuster",
+    "_meta": {
+      "title": "Video Length Adjuster"
+    }
+  },
+  "25": {
+    "inputs": {
+      "video": "___input___",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "28": {
+    "inputs": {
+      "speaker_name": "af_heart"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "29": {
+    "inputs": {
+      "speaker_name": "af_alloy"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "30": {
+    "inputs": {
+      "speaker_name": "af_aoede"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "31": {
+    "inputs": {
+      "speaker_name": "af_bella"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "32": {
+    "inputs": {
+      "speaker_name": "af_jessica"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "33": {
+    "inputs": {
+      "speaker_name": "af_kore"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "34": {
+    "inputs": {
+      "speaker_name": "af_nicole"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "35": {
+    "inputs": {
+      "speaker_name": "af_nova"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "36": {
+    "inputs": {
+      "speaker_name": "af_river"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "37": {
+    "inputs": {
+      "speaker_name": "af_sarah"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "38": {
+    "inputs": {
+      "speaker_name": "af_sky"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "39": {
+    "inputs": {
+      "speaker_name": "am_adam"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "40": {
+    "inputs": {
+      "speaker_name": "am_echo"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "41": {
+    "inputs": {
+      "speaker_name": "am_eric"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "42": {
+    "inputs": {
+      "speaker_name": "am_fenrir"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "43": {
+    "inputs": {
+      "speaker_name": "am_liam"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "44": {
+    "inputs": {
+      "speaker_name": "am_michael"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "45": {
+    "inputs": {
+      "speaker_name": "am_onyx"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "46": {
+    "inputs": {
+      "speaker_name": "am_puck"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "47": {
+    "inputs": {
+      "speaker_name": "am_santa"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "48": {
+    "inputs": {
+      "speaker_name": "bf_alice"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "49": {
+    "inputs": {
+      "speaker_name": "bf_emma"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "50": {
+    "inputs": {
+      "speaker_name": "bf_isabella"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "51": {
+    "inputs": {
+      "speaker_name": "bf_lily"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "52": {
+    "inputs": {
+      "speaker_name": "bm_daniel"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "53": {
+    "inputs": {
+      "speaker_name": "bm_fable"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "54": {
+    "inputs": {
+      "speaker_name": "bm_george"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "55": {
+    "inputs": {
+      "speaker_name": "bm_lewis"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "56": {
+    "inputs": {
+      "speaker_name": "jf_alpha"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "57": {
+    "inputs": {
+      "speaker_name": "jf_gongitsune"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "58": {
+    "inputs": {
+      "speaker_name": "jf_nezumi"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "59": {
+    "inputs": {
+      "speaker_name": "jf_tebukuro"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "60": {
+    "inputs": {
+      "speaker_name": "jm_kumo"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "61": {
+    "inputs": {
+      "speaker_name": "zf_xiaobei"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "62": {
+    "inputs": {
+      "speaker_name": "zf_xiaoni"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "63": {
+    "inputs": {
+      "speaker_name": "zf_xiaoxiao"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "64": {
+    "inputs": {
+      "speaker_name": "zf_xiaoyi"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "65": {
+    "inputs": {
+      "speaker_name": "zm_yunjian"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "66": {
+    "inputs": {
+      "speaker_name": "zm_yunxi"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "67": {
+    "inputs": {
+      "speaker_name": "zm_yunxia"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "68": {
+    "inputs": {
+      "speaker_name": "zm_yunyang"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "69": {
+    "inputs": {
+      "speaker_name": "ef_dora"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "70": {
+    "inputs": {
+      "speaker_name": "em_alex"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "71": {
+    "inputs": {
+      "speaker_name": "em_santa"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "72": {
+    "inputs": {
+      "speaker_name": "ff_siwis"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "73": {
+    "inputs": {
+      "speaker_name": "hf_alpha"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "74": {
+    "inputs": {
+      "speaker_name": "hf_beta"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "75": {
+    "inputs": {
+      "speaker_name": "hm_omega"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "76": {
+    "inputs": {
+      "speaker_name": "hm_psi"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "77": {
+    "inputs": {
+      "speaker_name": "if_sara"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "78": {
+    "inputs": {
+      "speaker_name": "im_nicola"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "79": {
+    "inputs": {
+      "speaker_name": "pf_dora"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "80": {
+    "inputs": {
+      "speaker_name": "pm_alex"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "81": {
+    "inputs": {
+      "speaker_name": "pm_santa"
+    },
+    "class_type": "KokoroSpeaker",
+    "_meta": {
+      "title": "Kokoro Speaker"
+    }
+  },
+  "82": {
+    "inputs": {
+      "select": ___contextValue___,
+      "sel_mode": true,
+      "input1": [
+        "28",
+        0
+      ],
+      "input2": [
+        "29",
+        0
+      ],
+      "input3": [
+        "30",
+        0
+      ],
+      "input4": [
+        "31",
+        0
+      ],
+      "input5": [
+        "32",
+        0
+      ],
+      "input6": [
+        "33",
+        0
+      ],
+      "input7": [
+        "34",
+        0
+      ],
+      "input8": [
+        "35",
+        0
+      ],
+      "input9": [
+        "36",
+        0
+      ],
+      "input10": [
+        "37",
+        0
+      ],
+      "input11": [
+        "38",
+        0
+      ],
+      "input12": [
+        "39",
+        0
+      ],
+      "input13": [
+        "40",
+        0
+      ],
+      "input14": [
+        "41",
+        0
+      ],
+      "input15": [
+        "42",
+        0
+      ],
+      "input16": [
+        "43",
+        0
+      ],
+      "input17": [
+        "44",
+        0
+      ],
+      "input18": [
+        "45",
+        0
+      ],
+      "input19": [
+        "46",
+        0
+      ],
+      "input20": [
+        "47",
+        0
+      ],
+      "input21": [
+        "48",
+        0
+      ],
+      "input22": [
+        "49",
+        0
+      ],
+      "input23": [
+        "50",
+        0
+      ],
+      "input24": [
+        "51",
+        0
+      ],
+      "input25": [
+        "52",
+        0
+      ],
+      "input26": [
+        "53",
+        0
+      ],
+      "input27": [
+        "54",
+        0
+      ],
+      "input28": [
+        "55",
+        0
+      ],
+      "input29": [
+        "56",
+        0
+      ],
+      "input30": [
+        "57",
+        0
+      ],
+      "input31": [
+        "58",
+        0
+      ],
+      "input32": [
+        "59",
+        0
+      ],
+      "input33": [
+        "60",
+        0
+      ],
+      "input34": [
+        "61",
+        0
+      ],
+      "input35": [
+        "62",
+        0
+      ],
+      "input36": [
+        "63",
+        0
+      ],
+      "input37": [
+        "64",
+        0
+      ],
+      "input38": [
+        "65",
+        0
+      ],
+      "input39": [
+        "66",
+        0
+      ],
+      "input40": [
+        "67",
+        0
+      ],
+      "input41": [
+        "68",
+        0
+      ],
+      "input42": [
+        "69",
+        0
+      ],
+      "input43": [
+        "70",
+        0
+      ],
+      "input44": [
+        "71",
+        0
+      ],
+      "input45": [
+        "72",
+        0
+      ],
+      "input46": [
+        "73",
+        0
+      ],
+      "input47": [
+        "74",
+        0
+      ],
+      "input48": [
+        "75",
+        0
+      ],
+      "input49": [
+        "76",
+        0
+      ],
+      "input50": [
+        "77",
+        0
+      ],
+      "input51": [
+        "78",
+        0
+      ],
+      "input52": [
+        "79",
+        0
+      ],
+      "input53": [
+        "80",
+        0
+      ],
+      "input54": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "83": {
+    "inputs": {
+      "select": ___contextValue2___,
+      "sel_mode": false,
+      "input": [
+        "82",
+        0
+      ]
+    },
+    "class_type": "ImpactInversedSwitch",
+    "_meta": {
+      "title": "Inversed Switch (Any)"
+    }
+  },
+  "84": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "English",
+      "speaker": [
+        "83",
+        0
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "85": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "English (British)",
+      "speaker": [
+        "83",
+        1
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "86": {
+    "inputs": {
+      "select": ___contextValue2___,
+      "sel_mode": false,
+      "input1": [
+        "84",
+        0
+      ],
+      "input2": [
+        "85",
+        0
+      ],
+      "input3": [
+        "87",
+        0
+      ],
+      "input4": [
+        "88",
+        0
+      ],
+      "input5": [
+        "89",
+        0
+      ],
+      "input6": [
+        "90",
+        0
+      ],
+      "input7": [
+        "91",
+        0
+      ],
+      "input8": [
+        "92",
+        0
+      ],
+      "input9": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "87": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "French",
+      "speaker": [
+        "83",
+        2
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "88": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Japanese",
+      "speaker": [
+        "83",
+        3
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "89": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Hindi",
+      "speaker": [
+        "83",
+        4
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "90": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Mandarin Chinese",
+      "speaker": [
+        "83",
+        5
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "91": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Spanish",
+      "speaker": [
+        "83",
+        6
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "92": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Brazilian Portuguese",
+      "speaker": [
+        "83",
+        7
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "93": {
+    "inputs": {
+      "text": [
+        "96",
+        0
+      ],
+      "speed": 1,
+      "lang": "Italian",
+      "speaker": [
+        "83",
+        8
+      ]
+    },
+    "class_type": "KokoroGenerator",
+    "_meta": {
+      "title": "Kokoro Generator"
+    }
+  },
+  "96": {
+    "inputs": {
+      "text": "___promptText___"
+    },
+    "class_type": "JjkText",
+    "_meta": {
+      "title": "Text"
+    }
+  }
+}

@@ -1,0 +1,57 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - amazon.aws.ec2_metadata_facts:
+      tags:
+        - always
+
+    - name: Copy runcomfy.sh to home folder
+      ansible.builtin.copy:
+        src: "files/runcomfy.sh"
+        dest: "/home/ec2-user/runcomfy.sh"
+        mode: "0755"
+        owner: ec2-user
+        group: ec2-user
+
+    - name: Create ComfyUI systemd service
+      copy:
+        src: files/comfyui.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+
+    - name: daemon-reload
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: enable comfyui service
+      become: true
+      ansible.builtin.service:
+        name: comfyui
+        enabled: yes
+
+    - name: Allow ec2-user to operate ComfyUi service
+      become: true
+      copy:
+        src: "files/comfyui/80-allow-ec2-user-operate-comfyui-service"
+        dest: "/etc/sudoers.d"
+        mode: "0440"
+        owner: root
+        group: root
+
+    - name: install cron
+      dnf: 
+        name: 
+          - cronie
+
+    - name: Cron environments
+      cron: name=PATH env=yes value=/usr/lib/sysstat:/usr/sbin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin cron_file=/etc/cron.d/cleanup-comfyui-input-and-output user=root
+
+    - name: Set up ComfyUi input cleanup task
+      cron: name="Cleanup ComfyUi input folders" minute="0" hour="9" weekday="*" cron_file="/etc/cron.d/cleanup-comfyui-input-and-output" user=root job="find /home/ec2-user/ai/ComfyUI/input -type f -atime +5 ! -empty ! -name 'example*' -delete"
+
+    - name: Set up ComfyUi output cleanup task
+      cron: name="Cleanup ComfyUi output folders" minute="0" hour="9" weekday="*" cron_file="/etc/cron.d/cleanup-comfyui-input-and-output" user=root job="find /home/ec2-user/ai/ComfyUI/output -type f -atime +5 ! -empty ! -name 'example*' -delete"

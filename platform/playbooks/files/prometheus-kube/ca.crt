@@ -1,0 +1,2 @@
+{% set ca_crt=lookup('aws_ssm', '/k8s-tls-ca/{{ env }}', region='eu-central-1', aws_profile='frever') %}
+{{ ca_crt }}

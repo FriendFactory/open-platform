@@ -1,0 +1,162 @@
+
+Autocaption. 10 template fonts
+
+1. Basic Font - IBMPlexSans_SemiCondensed-Bold
+
+Select Font Color: 1
+Select Font Size: 3
+Select Font Auto: 1
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+
+2. Bold & Engaging - Bangers-Regular.ttf
+
+Select Font Color: 9
+Select Font Size: 4
+Select Font Auto: 2
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+3. Handwriting & Elegant - GrapeNuts-Regular.ttf
+
+Select Font Color: 13
+Select Font Size: 3
+Select Font Auto: 3
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+
+4. Groovy - Koshari.ttf
+
+Select Font Color: 3
+Select Font Size: 4
+Select Font Auto: 4
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+
+5. Bubbly & Cute - Eracake.ttf
+
+Select Font Color: 4
+Select Font Size: 4
+Select Font Auto: 5
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+6. Rock Angels style - Quickless.ttf
+
+Select Font Color: 10
+Select Font Size: 4
+Select Font Auto: 6
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+7. Cute & Wispy  - Handletterink.ttf
+
+Select Font Color: 2
+Select Font Size: 4
+Select Font Auto: 7
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+8. Sweet&Poppy - Happy Memories.tts
+
+Select Font Color: 7
+Select Font Size: 5
+Select Font Auto: 8
+Set X Center: 1
+Select X position: 1
+Select Y position: 4
+
+
+WriteFont 
+
+Select Caption Mode: 1
+
+1. Basic Font - IBMPlexSans_SemiCondensed-Bold
+
+Select Font Color: 1
+Select Stroke Color: 2
+Set Stroke Thickness: 0.20
+Select Font Size: 3
+Select Font Write: 7
+Set X Center: 1
+
+
+
+2. Bold & Engaging - Bangers-Regular.ttf
+
+Select Font Color: 9
+Set Stroke Thickness: 0.20
+Select Stroke Color: 2
+Select Font Size: 4
+Select Font Write: 6
+Set X Center: 1
+
+3. Handwriting & Elegant - GrapeNuts-Regular.ttf
+
+Select Font Color: 13
+Select Stroke Color: 2
+Set Stroke Thickness: 0.05
+Select Font Size: 4
+Select Font Write: 5
+Set X Center: 1
+
+
+4. Groovy - Koshari.ttf
+
+Select Font Color: 3
+Select Stroke Color: 2
+Set Stroke Thickness: 0
+Select Font Size: 4
+Select Font Write: 4
+Set X Center: 1
+
+
+5. Bubbly & Cute - Eracake.ttf
+
+Select Font Color: 4
+Select Stroke Color: 2
+Set Stroke Thickness: 0
+Select Font Size: 4
+Select Font Write: 3
+Set X Center: 1
+
+
+6. Rock Angels style - Angelos.ttf
+
+Select Font Color: 10
+Select Stroke Color: 2
+Set Stroke Thickness: 0.05
+Select Font Size: 4
+Select Font Write: 2
+Set X Center: 1
+
+
+7. Cute & Wispy  - Cream-Cake-Bold.ttf
+
+Select Font Color: 2
+Select Stroke Color: 2
+Set Stroke Thickness: 0
+Select Font Size: 5
+Select Font Write: 1
+Set X Center: 1
+
+
+8. Sweet&Poppy - Happy Memories.tts
+
+Select Font Color: 7
+Select Stroke Color: 1
+Set Stroke Thickness: 0.05
+Select Font Size: 5
+Select Font Write: 0
+Set X Center: 1
+

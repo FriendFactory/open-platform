@@ -1,0 +1,43 @@
+{
+  "rules": [
+    {
+      "action": {
+        "type": "expire"
+      },
+      "selection": {
+        "countType": "sinceImagePushed",
+        "countUnit": "days",
+        "countNumber": 7,
+        "tagStatus": "untagged"
+      },
+      "description": "Remove untagged images older than 7 days",
+      "rulePriority": 5
+    },
+    {
+      "action": {
+        "type": "expire"
+      },
+      "selection": {
+        "countType": "imageCountMoreThan",
+        "countNumber": 5,
+        "tagPrefixList": ["prod"],
+        "tagStatus": "tagged"
+      },
+      "description": "Keep a maximum of 5 images tagged with prod",
+      "rulePriority": 6
+    },
+    {
+      "action": {
+        "type": "expire"
+      },
+      "selection": {
+        "countType": "imageCountMoreThan",
+        "countNumber": 50,
+        "tagStatus": "any"
+      },
+      "description": "Keep a maximum of 50 images",
+      "rulePriority": 10
+    }
+  ]
+}
+

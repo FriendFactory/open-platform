@@ -1,0 +1,661 @@
+{
+  "23": {
+    "inputs": {
+      "number_of_faces": 1,
+      "scale_factor": 2,
+      "shift_factor": 0.5,
+      "start_index": 2,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "1:1",
+      "image": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "26": {
+    "inputs": {
+      "image": "___input___",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "56": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 512,
+      "height": 512,
+      "crop": "disabled",
+      "image": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "79": {
+    "inputs": {
+      "expand": 4,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 3,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "84",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur (Invert eyes)"
+    }
+  },
+  "80": {
+    "inputs": {
+      "mask": [
+        "85",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "81": {
+    "inputs": {
+      "image_from": [
+        "152",
+        0
+      ],
+      "image_to": [
+        "56",
+        0
+      ],
+      "mask": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "ImageCompositeFromMaskBatch+",
+    "_meta": {
+      "title": "🔧 Image Composite From Mask Batch"
+    }
+  },
+  "84": {
+    "inputs": {
+      "background": false,
+      "skin": false,
+      "nose": false,
+      "eye_g": false,
+      "r_eye": true,
+      "l_eye": true,
+      "r_brow": false,
+      "l_brow": false,
+      "r_ear": false,
+      "l_ear": false,
+      "mouth": false,
+      "u_lip": false,
+      "l_lip": false,
+      "hair": false,
+      "hat": false,
+      "ear_r": false,
+      "neck_l": false,
+      "neck": false,
+      "cloth": false,
+      "result": [
+        "142",
+        0
+      ]
+    },
+    "class_type": "FaceParsingResultsParser(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingResultsParser(FaceParsing)"
+    }
+  },
+  "85": {
+    "inputs": {
+      "expand": 35,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 8,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "84",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur (Eyeshadow)"
+    }
+  },
+  "86": {
+    "inputs": {
+      "mask": [
+        "79",
+        1
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "88": {
+    "inputs": {
+      "image_from": [
+        "86",
+        0
+      ],
+      "image_to": [
+        "80",
+        0
+      ],
+      "mask": [
+        "79",
+        1
+      ]
+    },
+    "class_type": "ImageCompositeFromMaskBatch+",
+    "_meta": {
+      "title": "🔧 Image Composite From Mask Batch"
+    }
+  },
+  "90": {
+    "inputs": {
+      "channel": "blue",
+      "image": [
+        "88",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
+  },
+  "93": {
+    "inputs": {
+      "mask": [
+        "90",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "142": {
+    "inputs": {
+      "value": [
+        "149",
+        1
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "147": {
+    "inputs": {
+      "device": "cuda"
+    },
+    "class_type": "FaceParsingModelLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingModelLoader(FaceParsing)"
+    }
+  },
+  "148": {
+    "inputs": {},
+    "class_type": "FaceParsingProcessorLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingProcessorLoader(FaceParsing)"
+    }
+  },
+  "149": {
+    "inputs": {
+      "model": [
+        "335",
+        0
+      ],
+      "processor": [
+        "336",
+        0
+      ],
+      "image": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "FaceParse(FaceParsing)",
+    "_meta": {
+      "title": "FaceParse(FaceParsing)"
+    }
+  },
+  "152": {
+    "inputs": {
+      "contrast": 1,
+      "brightness": 1,
+      "saturation": 1,
+      "hue": 0,
+      "gamma": 1,
+      "image": [
+        "154",
+        0
+      ]
+    },
+    "class_type": "ColorAdjust(FaceParsing)",
+    "_meta": {
+      "title": "ColorAdjust(FaceParsing)"
+    }
+  },
+  "154": {
+    "inputs": {
+      "value": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "155": {
+    "inputs": {
+      "value": [
+        "159",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "159": {
+    "inputs": {
+      "facedetector": "mobilenet",
+      "dataname": "300wpublic",
+      "cfg": 1.01,
+      "steps": 6,
+      "width": 512,
+      "height": 512,
+      "id_image": [
+        "23",
+        0
+      ],
+      "makeup_image": [
+        "160",
+        0
+      ],
+      "model": [
+        "337",
+        0
+      ]
+    },
+    "class_type": "StableMakeup_Sampler",
+    "_meta": {
+      "title": "StableMakeup_Sampler"
+    }
+  },
+  "160": {
+    "inputs": {
+      "image": "___makeup___",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "162": {
+    "inputs": {
+      "ckpt_name": "realDream_15SD15.safetensors",
+      "clip": "openai/clip-vit-large-patch14",
+      "lora": "none",
+      "lora_scale": 1,
+      "lora_trigger_words": "best",
+      "scheduler": "DDIM"
+    },
+    "class_type": "StableMakeup_LoadModel",
+    "_meta": {
+      "title": "StableMakeup_LoadModel"
+    }
+  },
+  "231": {
+    "inputs": {
+      "crop_blending": 0.25,
+      "crop_sharpening": 0,
+      "image": [
+        "26",
+        0
+      ],
+      "crop_image": [
+        "81",
+        0
+      ],
+      "crop_data": [
+        "23",
+        1
+      ]
+    },
+    "class_type": "Image Paste Face",
+    "_meta": {
+      "title": "Image Paste Face"
+    }
+  },
+  "232": {
+    "inputs": {
+      "mask": [
+        "237",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "234": {
+    "inputs": {
+      "filename": "___outputPrefix____mask",
+      "path": "",
+      "extension": "png",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 90,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "images": [
+        "235",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "235": {
+    "inputs": {
+      "crop_blending": 0.25,
+      "crop_sharpening": 0,
+      "image": [
+        "232",
+        0
+      ],
+      "crop_image": [
+        "88",
+        0
+      ],
+      "crop_data": [
+        "23",
+        1
+      ]
+    },
+    "class_type": "Image Paste Face",
+    "_meta": {
+      "title": "Image Paste Face"
+    }
+  },
+  "237": {
+    "inputs": {
+      "value": 0,
+      "width": 608,
+      "height": 1080
+    },
+    "class_type": "SolidMask",
+    "_meta": {
+      "title": "SolidMask"
+    }
+  },
+  "288": {
+    "inputs": {
+      "blend_factor": 0.25,
+      "blend_mode": "normal",
+      "image1": [
+        "231",
+        0
+      ],
+      "image2": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "ImageBlend",
+    "_meta": {
+      "title": "Image Blend"
+    }
+  },
+  "303": {
+    "inputs": {
+      "number_of_faces": 1,
+      "scale_factor": 3,
+      "shift_factor": 0.5,
+      "start_index": 2,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "1:1",
+      "image": [
+        "288",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "304": {
+    "inputs": {
+      "number_of_faces": 1,
+      "scale_factor": 10,
+      "shift_factor": 0.5,
+      "start_index": 2,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "3:2",
+      "image": [
+        "288",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "305": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 608,
+      "height": 418,
+      "crop": "center",
+      "image": [
+        "304",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "306": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 128,
+      "height": 128,
+      "crop": "disabled",
+      "image": [
+        "303",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "309": {
+    "inputs": {
+      "filename": "___outputPrefix____128x128",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 80,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "images": [
+        "306",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "310": {
+    "inputs": {
+      "filename": "___outputPrefix____608x418",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 80,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "images": [
+        "305",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "312": {
+    "inputs": {
+      "filename": "___outputPrefix____608x1080",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 90,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "images": [
+        "288",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "335": {
+    "inputs": {
+      "key": "pipe102_face_parsing_model"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "336": {
+    "inputs": {
+      "key": "pipe103_face_parsing_processor"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "337": {
+    "inputs": {
+      "key": "pipe101_stable_make-up_sd15_model"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  }
+}

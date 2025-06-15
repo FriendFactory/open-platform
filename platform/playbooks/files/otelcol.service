@@ -1,0 +1,17 @@
+[Unit]
+Description=Jaeger service
+Wants=network.target cassandra.service docker.service
+After=network.target syslog.target cassandra.service docker.service jaeger.service
+
+[Service]
+User=root
+Group=root
+Restart=always
+RestartSec=10
+StartLimitBurst=5
+ExecStart=/bin/docker start -a otelcol
+ExecStop=/bin/docker stop -t 5 otelcol
+
+[Install]
+WantedBy=multi-user.target
+

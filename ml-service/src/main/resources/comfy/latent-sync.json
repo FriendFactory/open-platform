@@ -1,0 +1,91 @@
+{
+  "1": {
+    "inputs": {
+      "video": "___video___",
+      "force_rate": 25,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "7": {
+    "inputs": {
+      "seed": ___seed___,
+      "images": [
+        "8",
+        0
+      ],
+      "audio": [
+        "8",
+        1
+      ]
+    },
+    "class_type": "D_LatentSyncNode",
+    "_meta": {
+      "title": "LatentSync Node"
+    }
+  },
+  "8": {
+    "inputs": {
+      "mode": "pingpong",
+      "fps": 25,
+      "silent_padding_sec": 0.5,
+      "images": [
+        "1",
+        0
+      ],
+      "audio": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "D_VideoLengthAdjuster",
+    "_meta": {
+      "title": "Video Length Adjuster"
+    }
+  },
+  "9": {
+    "inputs": {
+      "frame_rate": 25,
+      "loop_count": 0,
+      "filename_prefix": "___outputPrefix___",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "7",
+        0
+      ],
+      "audio": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "10": {
+    "inputs": {
+      "audio": "___audio___",
+      "start_time": ___startTime___,
+      "duration": ___duration___
+    },
+    "class_type": "VHS_LoadAudioUpload",
+    "_meta": {
+      "title": "Load Audio (Upload)🎥🅥🅗🅢"
+    }
+  }
+}

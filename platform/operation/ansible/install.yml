@@ -1,0 +1,54 @@
+- name: Provision platform-operation application
+  hosts: all
+  become: true
+  gather_facts: false
+
+  handlers:
+    - name: restart rsyslog
+      ansible.builtin.service:
+        name: rsyslog
+        state: restarted
+
+  tasks:
+    - name: Upload target/frever-platform-operation-runner
+      copy:
+        src: ../target/frever-platform-operation-runner
+        dest: /home/ec2-user
+        owner: ec2-user
+        group: ec2-user
+        mode: '0755'
+
+    - name: Setup syslog
+      copy:
+        src: 91-frever-platform-operation-runner.conf
+        dest: /etc/rsyslog.d
+        owner: root
+        group: root
+        mode: '0644'
+      notify:
+        - restart rsyslog
+
+    - name: Setup logrotate
+      copy:
+        src: platform-operation
+        dest: /etc/logrotate.d
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create systemd service
+      copy:
+        src: frever-platform-operation-runner.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+
+    - name: daemon-reload
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: restart service
+      ansible.builtin.service:
+        name: frever-platform-operation-runner
+        enabled: yes
+        state: restarted

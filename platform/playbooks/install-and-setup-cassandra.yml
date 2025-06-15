@@ -1,0 +1,98 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  vars_prompt:
+    - name: cassandra_nodes_num
+      prompt: "number of Cassandra nodes for Jaeger service, 1 for non production workload, 3 for production workload."
+      default: 1
+      private: no
+
+  tasks:
+    - amazon.aws.ec2_metadata_facts:
+
+    - name: define seed_address as the first node IP address
+      ansible.builtin.set_fact:
+        seed_address: "{{ ansible_default_ipv4.address }}"
+      when: seed_address is not defined
+      run_once: true
+
+    - name: Get host IPs
+      set_fact: 
+        host_ips: "{{ host_ips|default([]) + [ hostvars[item]['ansible_default_ipv4']['address'] ] }}"
+      loop: "{{ groups['all'] }}"
+      run_once: true
+
+    - name: install python, pip3 and docker
+      dnf: 
+        name: 
+          - python3
+          - docker
+          - python3-pip
+          - nc
+
+    # - name: ensure python docker&cqlsh libraries are installed
+    - name: ensure python cqlsh libraries are installed
+      pip:
+        name: 
+          # - docker
+          - cqlsh
+
+    - name: Install Amazon Corretto 17
+      yum:
+        name: java-17-amazon-corretto-devel
+        state: latest
+
+    - name: Add the Apache repository of Cassandra
+      yum_repository: 
+        name: cassandra
+        description: Apache Cassandra 5.x Repo
+        file: cassandra
+        baseurl: https://redhat.cassandra.apache.org/50x/
+        gpgcheck: yes
+        repo_gpgcheck: yes
+        gpgkey: https://downloads.apache.org/cassandra/KEYS
+
+    - name: Install Cassandra 5
+      yum:
+        name: cassandra
+        enablerepo: cassandra
+        update_cache: yes
+        state: latest
+
+    - name: Update Cassandra cassandra-rackdc.properties file for prod deployment
+      ansible.builtin.template:
+        src: files/cassandra-rackdc.properties.j2
+        dest: /etc/cassandra/conf/cassandra-rackdc.properties
+        group: root
+        owner: root
+        mode: '0644'
+      register: cassandra_configuration_file1
+      when: cassandra_nodes_num == "3"
+
+    - name: Update Cassandra configuration file
+      ansible.builtin.template:
+        src: files/cassandra.yaml.j2
+        dest: /etc/cassandra/conf/cassandra.yaml
+        group: root
+        owner: root
+        mode: '0644'
+      register: cassandra_configuration_file2
+
+    - name: daemon-reload
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: Start Cassandra
+      ansible.builtin.service:
+        name: cassandra
+        state: started
+      register: cassandra_start
+
+    - name: Restart Cassandra
+      ansible.builtin.service:
+        name: cassandra
+        state: restarted
+      when: (cassandra_configuration_file1.changed or cassandra_configuration_file2.changed) and not cassandra_start.changed
+

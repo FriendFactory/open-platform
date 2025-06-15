@@ -1,0 +1,17 @@
+[Unit]
+Description=Verdaccio application
+Wants=network.target cloud-config.service
+After=network.target syslog.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+Environment="VERDACCIO_PUBLIC_URL=https://package-registry.frever-api.com"
+ExecStart=/home/ec2-user/verdaccio.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=verdaccio
+
+[Install]
+WantedBy=multi-user.target
+

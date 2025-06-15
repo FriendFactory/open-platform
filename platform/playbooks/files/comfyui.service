@@ -1,0 +1,19 @@
+[Unit]
+Description=ComfyUI service
+Wants=network.target
+After=network.target syslog.target
+
+[Service]
+User=ec2-user
+Group=ec2-user
+Restart=always
+RestartSec=15
+StartLimitBurst=3
+KillSignal=SIGINT
+ExecStart=/home/ec2-user/runcomfy.sh
+OOMScoreAdjust=-500
+
+[Install]
+WantedBy=multi-user.target
+
+

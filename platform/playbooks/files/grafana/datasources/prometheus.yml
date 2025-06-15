@@ -1,0 +1,17 @@
+apiVersion: 1
+
+datasources:
+  - name: {{ env }}-prometheus
+    type: prometheus
+    access: proxy
+    orgId: 1
+    uid: {{ env }}-prometheus
+    url: http://localhost:9090
+    user:
+    database:
+    basicAuth:
+    basicAuthUser:
+    withCredentials:
+    isDefault: false
+    editable: true
+

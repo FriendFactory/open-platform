@@ -1,0 +1,207 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  vars:
+    # https://hub.docker.com/r/jaegertracing/all-in-one/tags
+    jaeger_version: "1.68.0"
+    # https://hub.docker.com/r/otel/opentelemetry-collector-contrib/tags
+    otelcol_version: "0.123.0"
+    otelcol_latency_threshold: { test: 100, prod: 300 }
+
+  vars_prompt:
+    - name: env
+      prompt: "Environment this setup will be for (test or prod):"
+      default: test
+      private: no
+
+  pre_tasks:
+    - name: Ensure env argument is passed
+      fail: msg="env must be either test or prod"
+      when: env not in ["test", "prod"]
+
+  tasks:
+    - amazon.aws.ec2_metadata_facts:
+      tags:
+        - always
+
+    - name: Get host IPs
+      set_fact: 
+        host_ips: "{{ host_ips|default([]) + [ hostvars[item]['ansible_default_ipv4']['address'] ] }}"
+      loop: "{{ groups['all'] }}"
+      run_once: true
+      tags:
+        - always
+
+    - name: create docker configuration folder
+      file:
+        path: /etc/docker
+        mode: 0755
+        state: directory
+
+    - name: copy daemon.json file
+      ansible.builtin.copy:
+        src: "files/daemon.json"
+        dest: "/etc/docker/daemon.json"
+        mode: "0644"
+
+    - name: Install Docker
+      dnf:
+        name: docker
+        update_cache: yes
+
+    - name: Start Docker service
+      ansible.builtin.service:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Create Jaeger schema in Cassandra, copy files
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: "{{ item.mode }}"
+      with_items:
+        - { src: 'files/create-jaeger-schema.sh', dest: '/tmp/create-jaeger-schema.sh', mode: '0755'}
+        - { src: 'files/jaeger-schema.cql.tmpl', dest: '/tmp/jaeger-schema.cql.tmpl', mode: '0644'}
+      run_once: true
+
+    - name: Create Jaeger schema in Cassandra, run command (test mode)
+      ansible.builtin.shell: MODE=test KEYSPACE=jaeger_dc1 TRACE_TTL=864000 /tmp/create-jaeger-schema.sh | cqlsh
+      run_once: true
+      when: env == "test"
+
+    - name: Create Jaeger schema in Cassandra, run command (prod mode)
+      ansible.builtin.shell: MODE=prod TRACE_TTL=864000 DATACENTER={{ ansible_ec2_instance_identity_document_region }} /tmp/create-jaeger-schema.sh | cqlsh
+      run_once: true
+      when: env == "prod"
+
+    - name: Delete uploaded files
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items:
+        - { path: '/tmp/create-jaeger-schema.sh' }
+        - { path: '/tmp/jaeger-schema.cql.tmpl' }
+      run_once: true
+
+    - name: create OpenTelemetry collector configuration folder
+      file:
+        path: /etc/otelcol-contrib
+        mode: 0755
+        state: directory
+
+    - name: copy OpenTelemetry collector configuration file
+      ansible.builtin.template:
+        src: "files/otelcol-contrib-config.yaml"
+        dest: "/etc/otelcol-contrib/config.yaml"
+        mode: "0644"
+      tags: [ otelcol ]
+
+    - name: Run Jaeger all-in-one in test
+      docker_container:
+        name: jaeger
+        image: "jaegertracing/all-in-one:{{ jaeger_version }}"
+        state: started
+        ports:
+          # query: serve frontend. Navigate to http://localhost:16686 to access the Jaeger UI.
+          - "16686:16686"
+          # collector: accept jaeger.thrift directly from clients
+          - "14268:14268"
+          # collector: admin port, health check at / and metrics at /metrics
+          - "14269:14269"
+          # collector: accept OpenTelemetry Protocol (OTLP) over gRPC
+          - "4327:4317"
+          # collector: accept OpenTelemetry Protocol (OTLP) over HTTP
+          - "4328:4318"
+        env:
+          COLLECTOR_ZIPKIN_HOST_PORT: :9411
+          SPAN_STORAGE_TYPE: cassandra
+          CASSANDRA_SERVERS: "172.17.0.1"
+          # CASSANDRA_SERVERS: "{{ host_ips | join(',') }}"
+          # CASSANDRA_SERVERS: "host.docker.internal"
+      when: env == "test"
+      tags: [ upgrade-jaeger ]
+
+    - name: Run Jaeger all-in-one in prod
+      docker_container:
+        name: jaeger
+        image: "jaegertracing/all-in-one:{{ jaeger_version }}"
+        state: started
+        ports:
+          # query: serve frontend. Navigate to http://localhost:16686 to access the Jaeger UI.
+          - "16686:16686"
+          # collector: accept jaeger.thrift directly from clients
+          - "14268:14268"
+          # collector: admin port, health check at / and metrics at /metrics
+          - "14269:14269"
+          # collector: accept OpenTelemetry Protocol (OTLP) over gRPC
+          - "4327:4317"
+          # collector: accept OpenTelemetry Protocol (OTLP) over HTTP
+          - "4328:4318"
+        env:
+          COLLECTOR_ZIPKIN_HOST_PORT: :9411
+          SPAN_STORAGE_TYPE: cassandra
+          CASSANDRA_SERVERS: "{{ host_ips | join(',') }}"
+          CASSANDRA_KEYSPACE: 'jaeger_v1_{{ ansible_ec2_instance_identity_document_region | replace("-", "_") }}'
+      when: env == "prod"
+      tags: [ upgrade-jaeger ]
+
+    - name: Run OpenTelemetry collector
+      docker_container:
+        name: otelcol
+        image: "otel/opentelemetry-collector-contrib:{{ otelcol_version }}"
+        ports:
+          # pprof extension
+          - "1888:1888"
+          # Prometheus metrics exposed by the Collector
+          - "8888:8888"
+          # Prometheus exporter metrics
+          - "8889:8889"
+          # health_check extension
+          - "13133:13133"
+          # OTLP gRPC receiver
+          - "4317:4317"
+          # OTLP http receiver
+          - "4318:4318"
+          # zpages extension
+          - "55679:55679"
+        links:
+          - "jaeger:jaeger"
+        volumes:
+          - "/etc/otelcol-contrib/config.yaml:/etc/otelcol-contrib/config.yaml"
+        # command: ["--config", "/etc/otelcol-contrib/config.yaml", "--feature-gates", "-component.UseLocalHostAsDefaultHost"]
+        command: ["--config", "/etc/otelcol-contrib/config.yaml"]
+      tags: [ otelcol ]
+
+    - name: Create Jaeger systemd service
+      copy:
+        src: files/jaeger.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+
+    - name: Create Otelcol systemd service
+      copy:
+        src: files/otelcol.service
+        dest: /etc/systemd/system
+        owner: root
+        group: root
+
+    - name: daemon-reload
+      ansible.builtin.systemd:
+        daemon_reload: yes
+
+    - name: enable Jaeger service
+      become: true
+      ansible.builtin.service:
+        name: jaeger
+        enabled: yes
+
+    - name: enable Otelcol service
+      become: true
+      ansible.builtin.service:
+        name: otelcol
+        enabled: yes
+

@@ -1,0 +1,81 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: NAMESPACE_NAME
+  labels:
+    name: NAMESPACE_NAME
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: modulai
+  namespace: NAMESPACE_NAME
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recsysapp-deployment
+  namespace: NAMESPACE_NAME
+  labels:
+    app: recsysapp
+spec:
+  replicas: REPLICAS
+  selector:
+    matchLabels:
+      app: recsysapp
+  template:
+    metadata:
+      labels:
+        app: recsysapp
+    spec:
+      serviceAccountName: modulai
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: AppGroup
+                  operator: In
+                  values:
+                  - frever
+      containers:
+      - name: recsysapp
+        image: 722913253728.dkr.ecr.eu-central-1.amazonaws.com/personalisation-lightgbm-api:api_latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "512m"
+            memory: "2048Mi"
+          requests:
+            cpu: "128m"
+            memory: "384Mi"
+        command: ["/usr/local/bin/python"]
+        args: ["/usr/local/bin/gunicorn", "-w 8", "-k uvicorn.workers.UvicornWorker", "-b 0.0.0.0:80", "main:app"]
+        ports:
+        - containerPort: 80
+        env:
+          - name: VIEWS_API_URL
+            value: "https://LB_NAME.frever-api.com/latest"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: recsysapp-service
+  namespace: NAMESPACE_NAME
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled: "true"
+spec:
+  selector:
+    app: recsysapp
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

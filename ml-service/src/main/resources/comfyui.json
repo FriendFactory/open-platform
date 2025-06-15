@@ -1,0 +1,114 @@
+[
+    {
+        "name": "photo-pulid-2",
+        "path": "comfy/photo-pulid-2.json"
+    },
+    {
+        "name": "photo-pulid-3",
+        "path": "comfy/photo-pulid-3.json"
+    },
+    {
+        "name": "latent-sync",
+        "path": "comfy/latent-sync.json"
+    },
+    {
+        "name": "is-cached-photo-pulid-instance",
+        "path": "comfy/is-cached-photo-pulid-instance.json"
+    },
+    {
+        "name": "is-cached-photo-makeup-instance",
+        "path": "comfy/is-cached-photo-makeup-instance.json"
+    },
+    {
+        "name": "is-cached-video-lip-sync-instance",
+        "path": "comfy/is-cached-video-lip-sync-instance.json"
+    },
+    {
+        "name": "cache-components-photo-pulid-instance",
+        "path": "comfy/cache-components-photo-pulid-instance.json"
+    },
+    {
+        "name": "cache-components-photo-makeup-instance",
+        "path": "comfy/cache-components-photo-makeup-instance.json"
+    },
+    {
+        "name": "cache-components-video-lip-sync-instance",
+        "path": "comfy/cache-components-video-lip-sync-instance.json"
+    },
+    {
+        "name": "flux-photo-prompt",
+        "path": "comfy/flux-photo-prompt.json"
+    },
+    {
+        "name": "flux-prompt",
+        "path": "comfy/flux-prompt.json"
+    },
+    {
+        "name": "flux-photo-redux-style",
+        "path": "comfy/flux-photo-redux-style.json"
+    },
+    {
+        "name": "photo-make-up-thumbnails",
+        "path": "comfy/photo-make-up-thumbnails.json"
+    },
+    {
+        "name": "photo-make-up-eyebrows-thumbnails",
+        "path": "comfy/photo-make-up-eyebrows-thumbnails.json"
+    },
+    {
+        "name": "photo-make-up-eyelashes-eyeshadow-thumbnails",
+        "path": "comfy/photo-make-up-eyelashes-eyeshadow-thumbnails.json"
+    },
+    {
+        "name": "photo-make-up-lips-thumbnails",
+        "path": "comfy/photo-make-up-lips-thumbnails.json"
+    },
+    {
+        "name": "photo-make-up-skin-thumbnails",
+        "path": "comfy/photo-make-up-skin-thumbnails.json"
+    },
+    {
+        "name": "sonic-text",
+        "path": "comfy/sonic-text.json"
+    },
+    {
+        "name": "sonic-audio",
+        "path": "comfy/sonic-audio.json"
+    },
+    {
+        "name": "photo-ace-plus",
+        "path": "comfy/photo-ace-plus.json"
+    },
+    {
+        "name": "video-on-output-text",
+        "path": "comfy/video-on-output-text.json"
+    },
+    {
+        "name": "video-on-output-audio",
+        "path": "comfy/video-on-output-audio.json"
+    },
+    {
+        "name": "latent-sync-text",
+        "path": "comfy/latent-sync-text.json"
+    },
+    {
+        "name": "still-image-text",
+        "path": "comfy/still-image-text.json"
+    },
+    {
+        "name": "still-image-audio",
+        "path": "comfy/still-image-audio.json"
+    },
+    {
+        "name": "music-gen",
+        "path": "comfy/music-gen.json"
+    },
+    {
+        "name": "mm-audio",
+        "path": "comfy/mm-audio.json"
+    },
+    {
+        "name": "video-live-portrait",
+        "path": "comfy/video-live-portrait.json"
+    }
+]

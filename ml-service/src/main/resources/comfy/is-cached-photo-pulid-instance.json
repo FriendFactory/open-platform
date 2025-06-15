@@ -1,0 +1,24 @@
+{
+  "2": {
+    "inputs": {
+      "key": "pipe1_flux1-dev"
+    },
+    "class_type": "IsCached //Inspire",
+    "_meta": {
+      "title": "Is Cached (Inspire)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree)"
+    }
+  }
+}

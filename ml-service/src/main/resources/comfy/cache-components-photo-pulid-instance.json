@@ -1,0 +1,202 @@
+{
+  "1": {
+    "inputs": {
+      "unet_name": "flux1-dev-fp8.safetensors",
+      "weight_dtype": "fp8_e4m3fn_fast"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "2": {
+    "inputs": {
+      "key": "pipe1_flux1-dev",
+      "tag": "",
+      "data": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "3": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "4": {
+    "inputs": {
+      "key": "pipe2_t5xxl_clip_I",
+      "tag": "",
+      "data": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "pulid_file": "pulid_flux_v0.9.1.safetensors"
+    },
+    "class_type": "PulidFluxModelLoader",
+    "_meta": {
+      "title": "Load PuLID Flux Model"
+    }
+  },
+  "6": {
+    "inputs": {
+      "key": "pipe3_pulid_flux",
+      "tag": "",
+      "data": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "9": {
+    "inputs": {
+      "clip_name": "slig.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "10": {
+    "inputs": {
+      "key": "pipe4_slig_clip_vision_flux",
+      "tag": "",
+      "data": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "11": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "Load Style Model"
+    }
+  },
+  "12": {
+    "inputs": {
+      "key": "pipe5_redux_style_flux",
+      "tag": "",
+      "data": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "13": {
+    "inputs": {
+      "key": "pipe6_ae_vae_flux",
+      "tag": "",
+      "data": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "14": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "15": {
+    "inputs": {
+      "provider": "CUDA"
+    },
+    "class_type": "PulidFluxInsightFaceLoader",
+    "_meta": {
+      "title": "Load InsightFace (PuLID Flux)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "key": "pipe7_face_analysis_flux",
+      "tag": "",
+      "data": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "17": {
+    "inputs": {},
+    "class_type": "PulidFluxEvaClipLoader",
+    "_meta": {
+      "title": "Load Eva Clip (PuLID Flux)"
+    }
+  },
+  "18": {
+    "inputs": {
+      "key": "pipe8_eva_clip_flux",
+      "tag": "",
+      "data": [
+        "17",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "19": {
+    "inputs": {
+      "lora_name": "FLUX1-Turbo-Alpha.safetensors",
+      "strength_model": 1,
+      "model": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  }
+}

@@ -1,0 +1,163 @@
+Switch 1:	
+ID:	Select Caption Mode
+
+1	Write Caption 
+2	AutoCaption
+
+
+Switch 2:	
+ID:	Select Font Color default: 1 = white
+
+1. #FFFFFF
+ - White  
+2. #000000
+ - Black  
+3. #FFD700
+ - Gold
+4. #FF4500
+ - Orange-Red  
+5. #00BFFF
+ - Deep Sky Blue  
+6. #228B22
+ - Forest Green 
+ 7. #FF5BE4
+ - Deep Pink
+8. #4B0082
+ - Indigo  
+9. #DDFF00
+- Lime Yellow  
+10. #DC143C
+ - Crimson
+11. #2F20C1
+ - Blue
+12. #00FF00
+ - Lime Green 
+ 13. #E6E6FA 
+- Lavender  
+14. #85FFED 
+- Cyan
+15. #9C82C2
+ - Dusty Lavender
+
+
+Switch 5:	
+ID:	Select Font Size , Default: 3
+
+1	20
+2	30
+3       40
+4       50
+5       60
+6       100
+
+
+
+Switch 6(Autocaption only):
+ID: Select X Position, default: 2 = 200 = center
+
+1 = 0= left
+2 = 200 = center
+3 = 300 = right
+
+Switch 7(Autocaption only):
+ID: Select Y Position, deafult: 4 = 750 = caption
+
+1 = 0= top
+2 = 540 = middle
+3 = 850 = bottom
+4 = 750 = caption
+
+Switch 8:(Autocaption only)
+ID: Set X Center  default. 1
+1 = true
+2 = false
+
+
+1. Write Caption -> 
+Write Caption Input:
+Write in this node what you want for your caption.
+
+Switch 3: (Writecaption only)
+ID:     Select Font Write: Default: 7
+7 = 1_IBMPlexSans_SemiCondensed-Bold
+6 = 2_Bangers-Regular
+5 = 3_GrapeNuts-Regular
+4 = 4_Koshari
+3 = 5_Eracake
+2 = 6_Quickless
+1 = 7_Handletterink
+0 = 8_Happy Memories
+
+goes from the bottom upwards from 0
+
+##### we can add more fonts if we want to.###
+
+- for 1. Write Caption -
+Switch 3 (write caption only):	
+ID:	Select Stroke Color: Default: 2
+
+1. #FFFFFF
+ - White  
+2. #000000
+ - Black  
+3. #FFD700
+ - Gold
+4. #FF4500
+ - Orange-Red  
+5. #00BFFF
+ - Deep Sky Blue  
+6. #228B22
+ - Forest Green  
+7. #FF1493
+ - Deep Pink
+8. #4B0082
+ - Indigo  
+9. #DDFF00
+- Lime Yellow  
+10. #DC143C
+ - Crimson
+11. #2F20C1
+ - Blue
+12. #00FF00
+ - Lime Green  
+13. #E6E6FA 
+- Lavender  
+14. #85FFED 
+- Cyan
+15. #9C82C2
+ - Dusty Lavender
+
+----------------------
+
+Set Stroke Thickness (WriteCaption only):
+Input Value: FLOAT: 0-1 Default: 0
+
+Inside TextOverlay Node (WriteCaption:)
+
+Set X Shift (WriteCaption only):
+Input Value: INT: -128 to 128 default: 0
+
+Set Y Shift(WriteCaption only):
+Input Value: INT: -128 to 128 default: -100
+
+Set Horizontal Alignment (WriteCaption only)
+Input Value: COMBO: left, center, right default: center
+
+Set Vertical Alignment(WriteCaption only)
+Input Value: COMBO: top, middle, bottom default: bottom
+
+
+2. Autocaption -->
+
+Switch 4:
+ID: Select Font Auto (Autocaption only) default. 1
+1 = 1_IBMPlexSans_SemiCondensed-Bold
+2 = 2_Bangers-Regular
+3 = 3_GrapeNuts-Regular
+4 = 4_Koshari
+5 = 5_Eracake
+6 = 6_Quickless
+7 = 7_Handletterink
+8 = 8_Happy Memories
+
+predesignated positions for autocaption, however font color can be changed in "Select Font Color" and font size in "Select Font Size".

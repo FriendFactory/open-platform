@@ -1,0 +1,382 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  vars:
+    grafana_version: "11.6.0"
+    loki_version: "3.4.3"
+    prometheus_version: "2.53.4"
+    loki_path: "/opt/loki"
+    prometheus_path: "/opt/prometheus-{{ prometheus_version }}"
+    loki_data_path: "{{ loki_path }}/data"
+    loki_config_file: "loki-config.yaml"
+    prometheus_config_file: "prometheus.yml"
+    prometheus_configuration: { "dev": { "retention": "10d" }, "content-stage": { "retention": "20d" }, "content-prod": { "retention": "30d" }, "prod-us": { "retention": "30d" }, "ixia-prod": { "retention": "30d" } }
+    ec2_platform: { "aarch64": "arm64", "x86_64": "amd64" }
+    loki_s3_buckets: { "dev": "frever-dev-loki", "content-stage": "content-stage-loki", "content-prod": "content-prod-loki", "prod-us": "frever-prod-loki", "ixia-prod": "ixia-prod-loki" }
+    # make sure the s3 bucket exists
+    loki_s3_bucket: "{{ loki_s3_buckets[env] }}"
+    eks_api_server_url: { "dev": "BE823FA14947E637022AD48174D47F52.gr7.eu-central-1.eks.amazonaws.com", "content-stage": "A01450063EA0ADDD801ADF701C18ED27.gr7.eu-central-1.eks.amazonaws.com", "content-prod": "9BC2EECFE5BDA6BAE0666D54701E5A2A.gr7.eu-central-1.eks.amazonaws.com", "prod-us": "https://B183F718D19D1EA5B3289909EEFD5DDF.gr7.us-east-2.eks.amazonaws.com", "ixia-prod": "8F89A2A7C4E2B899C53EAB301FAA134D.gr7.eu-central-1.eks.amazonaws.com" }
+    slack_webhook_urls: { "dev": "https://hooks.slack.com/services/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", "content-stage": "https://hooks.slack.com/services/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", "content-prod": "https://hooks.slack.com/services/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", "prod-us": "https://hooks.slack.com/services/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", "ixia-prod": "https://hooks.slack.com/services/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" }
+    
+  vars_prompt:
+    - name: env
+      prompt: "Environment this setup will be for (dev, content-stage or content-prod, prod-us, ixia-prod):"
+      default: dev
+      private: no
+
+    - name: aws_region
+      prompt: "The AWS region to setup Grafana and Loki in:"
+      default: eu-central-1
+      private: no
+
+  pre_tasks:
+    - name: Ensure env argument is passed
+      fail: msg="env must be either dev, content-stage or content-prod, prod-us, ixia-prod"
+      when: env not in ["dev", "content-stage", "content-prod", "prod-us", "ixia-prod"]
+    - name: Ensure hostname maps to the env argument
+      fail: msg="make sure targeting the correct host"
+      when: env not in inventory_hostname
+
+  tasks:
+    - amazon.aws.ec2_metadata_facts:
+
+    - name: install python, pip3 and docker
+      dnf: 
+        name: 
+          - python3
+          - docker
+          - python3-pip
+          - nc
+
+    # - name: Add the Grafana repository
+    #   yum_repository: 
+    #     name: grafana
+    #     description: Grafana Repo
+    #     file: grafana
+    #     baseurl: https://packages.grafana.com/oss/rpm
+    #     gpgcheck: yes
+    #     repo_gpgcheck: yes
+    #     gpgkey: https://packages.grafana.com/gpg.key
+    #     sslcacert: "/etc/pki/tls/certs/ca-bundle.crt"
+    #   tags: grafana
+
+    # - name: Install Grafana
+    #   yum:
+    #     name: grafana
+    #     update_cache: yes
+    #     state: latest
+    #   tags: [ grafana, install ]
+
+    - name: Check Grafana existence
+      tags: [grafana, grafana_provision]
+      command: "/sbin/grafana-server -v | grep {{ grafana_version }}"
+      register: grafana_installed
+      ignore_errors: yes
+      changed_when: "grafana_installed.rc != 0"
+
+    - name: Install Grafana if needed
+      tags: [grafana, grafana_provision]
+      ansible.builtin.shell: |
+        wget -P /tmp/ https://dl.grafana.com/oss/release/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm
+        dnf install -y /tmp/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm
+        rm -f /tmp/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm
+      # command: "wget -P /tmp/ https://dl.grafana.com/oss/release/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm && yum install -y /tmp/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm && rm -f /tmp/grafana-{{ grafana_version }}-1.{{ ansible_architecture }}.rpm"
+      when: "grafana_installed.rc != 0"
+
+    - name: Enable Grafana cookie
+      tags: [ grafana, grafana_config ]
+      replace:
+        path: /etc/grafana/grafana.ini
+        regexp: '^;(login_cookie_name = .*$)'
+        replace: '\1_{{ ansible_hostname | replace("-", "_") }}'
+
+    - name: Start Grafana
+      ansible.builtin.systemd:
+        name: grafana-server
+        enabled: yes
+        daemon_reload: yes
+        state: started
+      tags: grafana
+
+    - name: Grafana Datasource setup
+      ansible.builtin.template:
+        src: "{{ item.path }}"
+        dest: "/etc/grafana/provisioning/datasources/{{ item.name }}"
+        mode: 0644
+        group: grafana
+        owner: grafana
+      with_items:
+        - { path: 'files/grafana/datasources/loki.yml', name: 'loki.yml' }
+        - { path: 'files/grafana/datasources/prometheus.yml', name: 'prometheus.yml' }
+      tags: [ grafana, grafana_provision, prometheus ]
+
+    - name: Setup Grafana Cloudwatch datasource (Only content-prod)
+      ansible.builtin.template:
+        src: files/grafana/datasources/cloudwatch.yml
+        dest: /etc/grafana/provisioning/datasources/cloudwatch.yml
+        mode: 0644
+        group: grafana
+        owner: grafana
+      tags: [ grafana, grafana_provision ]
+      when: env == "content-prod"
+
+    - name: create Grafana Alerting folder
+      file:
+        path: /etc/grafana/provisioning/alerting/
+        mode: 0755
+        group: grafana
+        owner: grafana
+        state: directory
+      tags: [ grafana, grafana_provision ]
+
+    - name: Grafana Alerting contact-points
+      ansible.builtin.template:
+        src: files/grafana/alerting/contact-points.yml
+        dest: /etc/grafana/provisioning/alerting/contact-points.yml
+        mode: 0644
+        group: grafana
+        owner: root
+      tags: [ grafana, grafana_provision ]
+
+    - name: Grafana message templates
+      ansible.builtin.copy:
+        src: files/grafana/alerting/slack-message-template.yml
+        dest: /etc/grafana/provisioning/alerting/slack-message-template.yml
+        mode: 0644
+        group: grafana
+        owner: grafana
+      tags: [ grafana, grafana_provision ]
+
+    - name: Inject Search Link into slack-message-template.yml
+      ansible.builtin.lineinfile:
+        path: /etc/grafana/provisioning/alerting/slack-message-template.yml
+        regexp: '%SEARCH_LINK%'
+        line: '      Search Link: http://localhost:3000/explore?orgId=1&left=%7B%22datasource%22:%22{{ env }}-loki%22,%22queries%22:%5B%7B%22refId%22:%22A%22,%22editorMode%22:%22builder%22,%22expr%22:%22%7Bnamespace%3D~%5C%22{{ env }}%7Capp.%2A%5C%22%7D%20%7C~%20%60%5C%5Cs%7B4%7Dat%5C%5Cs%7B1%7D%7Cfail:%7Cerror:%60%22,%22queryType%22:%22range%22%7D%5D,%22range%22:%7B%22from%22:%22now-30m%22,%22to%22:%22now%22%7D%7D'
+      tags: [ grafana, grafana_provision ]
+
+    - name: Grafana Alerting rules
+      ansible.builtin.template:
+        src: files/grafana/alerting/rules.yml
+        dest: /etc/grafana/provisioning/alerting/rules.yml
+        mode: 0644
+        group: grafana
+        owner: grafana
+      tags: [ grafana, grafana_provision, grafana_alerting_rules ]
+
+    - name: Grafana Alerting notification policies
+      ansible.builtin.template:
+        src: files/grafana/alerting/notification-policies.yml
+        dest: /etc/grafana/provisioning/alerting/notification-policies.yml
+        mode: 0644
+        group: grafana
+        owner: grafana
+      tags: [ grafana, grafana_provision ]
+
+    - name: Create a directory for Loki and Loki data
+      ansible.builtin.file:
+        path: "{{ loki_data_path }}"
+        state: directory
+        mode: '0755'
+      tags: loki
+
+    - name: Check Loki binary existence
+      stat:
+        path: "{{ loki_path }}/loki-{{ loki_version }}"
+      register: loki_exist
+      tags: loki
+
+    - name: Extract Loki binary
+      ansible.builtin.unarchive:
+        src: "https://github.com/grafana/loki/releases/download/v{{ loki_version }}/loki-linux-{{ ec2_platform[ansible_architecture] }}.zip"
+        dest: "{{ loki_path }}"
+        remote_src: yes
+      when: loki_exist.stat.exists is false
+      tags: loki
+
+    - name: Rename Loki binary with version
+      ansible.builtin.copy:
+        src: "{{ loki_path }}/loki-linux-{{ ec2_platform[ansible_architecture] }}"
+        dest: "{{ loki_path }}/loki-{{ loki_version }}"
+        remote_src: yes
+        mode: '0755'
+      when: loki_exist.stat.exists is false
+    
+    - name: Remove the old binary
+      file:
+          path: "{{ loki_path }}/loki-linux-{{ ec2_platform[ansible_architecture] }}"
+          state: absent
+      when: loki_exist.stat.exists is false
+ 
+    - name: Copy Loki config
+      ansible.builtin.template:
+        src: "files/{{ loki_config_file }}.j2"
+        dest: "{{ loki_path }}/{{ loki_config_file }}"
+        group: root
+        owner: root
+        mode: '0644'
+      tags: loki
+
+    - name: Create Loki systemd service
+      ansible.builtin.template:
+        src: files/loki.service
+        dest: /etc/systemd/system/loki.service
+        owner: root
+        group: root
+      tags: loki
+
+    - name: daemon-reload
+      ansible.builtin.systemd:
+        name: loki
+        enabled: yes
+        daemon_reload: yes
+        state: started
+      tags: loki
+
+    - name: Create prometheus group
+      ansible.builtin.group:
+        name: prometheus
+        system: yes
+      tags: prometheus
+
+    - name: Create prometheus user
+      ansible.builtin.user:
+        name: prometheus
+        group: prometheus
+        system: yes
+        create_home: no
+        comment: User used to run Prometheus
+      tags: prometheus
+
+    - name: Check Prometheus binary existence
+      stat:
+        path: "{{ prometheus_path }}"
+      register: prometheus_exist
+      tags: prometheus
+
+    - name: Create a directory for Prometheus
+      ansible.builtin.file:
+        path: "{{ prometheus_path }}"
+        state: directory
+        mode: '0755'
+      when: prometheus_exist.stat.exists is false
+      tags: prometheus
+
+    - name: Extract Prometheus binary
+      ansible.builtin.unarchive:
+        src: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ ec2_platform[ansible_architecture] }}.tar.gz"
+        dest: "{{ prometheus_path }}/"
+        remote_src: yes
+        group: prometheus
+        owner: prometheus
+        extra_opts: [--strip-components=1]
+      when: prometheus_exist.stat.exists is false
+      tags: prometheus
+
+    - name: Delete the downloaded package
+      ansible.builtin.file:
+          path: "/opt/prometheus-{{ prometheus_version }}.linux-{{ ec2_platform[ansible_architecture] }}.tar.gz"
+          state: absent
+      when: prometheus_exist.stat.exists is false
+      tags: prometheus
+ 
+    - name: Copy Prometheus config
+      ansible.builtin.template:
+        src: "files/{{ prometheus_config_file }}"
+        dest: "{{ prometheus_path }}/{{ prometheus_config_file }}"
+        group: prometheus
+        owner: prometheus
+        mode: '0644'
+      tags: prometheus
+
+    - name: Create a directory for Prometheus Kube config
+      ansible.builtin.file:
+        path: "{{ prometheus_path }}/kube"
+        state: directory
+        group: prometheus
+        owner: prometheus
+        mode: '0755'
+      tags: prometheus
+
+    - name: Copy Prometheus Kube config
+      ansible.builtin.template:
+        src: "{{ item.path }}"
+        dest: "{{ prometheus_path }}/kube/{{ item.name }}"
+        group: prometheus
+        owner: prometheus
+        mode: '0644'
+      with_items:
+        - { path: 'files/prometheus-kube/ca.crt', name: 'ca.crt' }
+        - { path: 'files/prometheus-kube/token', name: 'token' }
+      tags: prometheus
+
+    - name: Create Prometheus systemd service
+      ansible.builtin.template:
+        src: files/prometheus.service
+        dest: /etc/systemd/system/prometheus.service
+        owner: root
+        group: root
+      tags: prometheus
+
+    - name: Setup Grafana Dashboards provisioning using Prometheus datasource
+      ansible.builtin.template:
+        src: files/grafana/dashboards/config.yml
+        dest: /etc/grafana/provisioning/dashboards/config.yml
+        mode: 0640
+        group: grafana
+        owner: grafana
+      tags: prometheus
+
+    - name: create Grafana dashboards folder
+      file:
+        path: /var/lib/grafana/dashboards
+        mode: 0755
+        group: grafana
+        owner: grafana
+        state: directory
+      tags: [ grafana, grafana_provision, prometheus ]
+
+    - name: Setup Grafana Dashboards using Prometheus datasource
+      ansible.builtin.template:
+        src: files/grafana/dashboards/{{ item }}
+        dest: /var/lib/grafana/dashboards/{{ item }}
+        mode: 0640
+        group: grafana
+        owner: grafana
+      with_items:
+        - frever-service-dashboard.json
+        - k8s-views-global.json
+        - k8s-views-namespaces.json
+        - k8s-views-nodes.json
+        - k8s-views-pods.json
+      tags: [ prometheus, dashboards ]
+
+    - name: Setup Grafana Dashboards using Cloudwatch datasource
+      ansible.builtin.template:
+        src: files/grafana/dashboards/{{ item }}
+        dest: /var/lib/grafana/dashboards/{{ item }}
+        mode: 0640
+        group: grafana
+        owner: grafana
+      with_items:
+        - aws-billing.json
+      tags: [ grafana, grafana_provision, dashboards ]
+      when: env == "content-prod"
+
+    - name: daemon-reload prometheus
+      ansible.builtin.systemd:
+        name: prometheus
+        enabled: yes
+        daemon_reload: yes
+        state: started
+      tags: prometheus
+
+    - name: daemon-reload Grafana
+      ansible.builtin.systemd:
+        name: grafana-server
+        enabled: yes
+        daemon_reload: yes
+        state: started
+      tags: prometheus
+

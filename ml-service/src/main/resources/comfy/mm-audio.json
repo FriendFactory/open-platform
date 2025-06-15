@@ -1,0 +1,649 @@
+{
+  "20": {
+    "inputs": {
+      "duration": [
+        "27",
+        2
+      ],
+      "steps": 30,
+      "cfg": 6,
+      "seed": [
+        "59",
+        0
+      ],
+      "prompt": [
+        "117",
+        0
+      ],
+      "negative_prompt": [
+        "35",
+        0
+      ],
+      "mask_away_clip": false,
+      "force_offload": true,
+      "mmaudio_model": [
+        "148",
+        0
+      ],
+      "feature_utils": [
+        "149",
+        0
+      ],
+      "images": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "MMAudioSampler",
+    "_meta": {
+      "title": "MMAudio Sampler"
+    }
+  },
+  "25": {
+    "inputs": {
+      "frame_rate": [
+        "27",
+        0
+      ],
+      "loop_count": 0,
+      "filename_prefix": "___outputPrefix___",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "54",
+        0
+      ],
+      "audio": [
+        "110",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "27": {
+    "inputs": {
+      "video_info": [
+        "54",
+        3
+      ]
+    },
+    "class_type": "VHS_VideoInfo",
+    "_meta": {
+      "title": "Video Info 🎥🅥🅗🅢"
+    }
+  },
+  "34": {
+    "inputs": {
+      "string": "___promptText___",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Any Additional Sound Effect Your Want?"
+    }
+  },
+  "35": {
+    "inputs": {
+      "string": "",
+      "strip_newlines": false
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "String Constant Multiline"
+    }
+  },
+  "39": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": ___seed___,
+      "image": [
+        "41",
+        0
+      ],
+      "florence2_model": [
+        "150",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "40": {
+    "inputs": {
+      "part1": [
+        "34",
+        0
+      ],
+      "part2": [
+        "39",
+        2
+      ],
+      "part3": "",
+      "part4": "",
+      "separator": ", "
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "41": {
+    "inputs": {
+      "batch_index": 5,
+      "length": 1,
+      "image": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "ImageFromBatch",
+    "_meta": {
+      "title": "ImageFromBatch"
+    }
+  },
+  "42": {
+    "inputs": {
+      "text": [
+        "39",
+        2
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "54": {
+    "inputs": {
+      "video": "___input___",
+      "force_rate": 0,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "59": {
+    "inputs": {
+      "seed": -1
+    },
+    "class_type": "Seed (rgthree)",
+    "_meta": {
+      "title": "Seed (rgthree)"
+    }
+  },
+  "68": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "74": {
+    "inputs": {
+      "chunk_fade_shape": "half_sine",
+      "chunk_length": 16,
+      "chunk_overlap": 0.1,
+      "audio": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "AudioSeparation",
+    "_meta": {
+      "title": "AudioSeparation"
+    }
+  },
+  "75": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "74",
+        0
+      ],
+      "audio_2": [
+        "74",
+        1
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "76": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "75",
+        0
+      ],
+      "audio_2": [
+        "74",
+        2
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "78": {
+    "inputs": {
+      "gain_db": -15,
+      "audio": [
+        "76",
+        0
+      ]
+    },
+    "class_type": "AudioGainNode",
+    "_meta": {
+      "title": "Apply Gain (Universal)"
+    }
+  },
+  "94": {
+    "inputs": {
+      "chunk_fade_shape": "half_sine",
+      "chunk_length": 20,
+      "chunk_overlap": 0.2,
+      "audio": [
+        "133",
+        0
+      ]
+    },
+    "class_type": "AudioSeparation",
+    "_meta": {
+      "title": "AudioSeparation"
+    }
+  },
+  "97": {
+    "inputs": {
+      "gain_db": 0,
+      "audio": [
+        "145",
+        0
+      ]
+    },
+    "class_type": "AudioGainNode",
+    "_meta": {
+      "title": "Apply Gain (Universal)"
+    }
+  },
+  "107": {
+    "inputs": {
+      "value": ___contextValue___
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "Select Audio Mode"
+    }
+  },
+  "110": {
+    "inputs": {
+      "select": [
+        "107",
+        0
+      ],
+      "sel_mode": false,
+      "input1": [
+        "76",
+        0
+      ],
+      "input2": [
+        "20",
+        0
+      ],
+      "input3": [
+        "68",
+        0
+      ],
+      "input4": [
+        "146",
+        0
+      ],
+      "input5": [
+        "153",
+        0
+      ],
+      "input6": [
+        "154",
+        0
+      ],
+      "input7": [
+        "156",
+        0
+      ],
+      "input8": [
+        "157",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "114": {
+    "inputs": {
+      "value": ___contextValue2___
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "Select Prompt Mode"
+    }
+  },
+  "117": {
+    "inputs": {
+      "select": [
+        "114",
+        0
+      ],
+      "sel_mode": false,
+      "input1": [
+        "39",
+        2
+      ],
+      "input2": [
+        "34",
+        0
+      ],
+      "input3": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "133": {
+    "inputs": {
+      "select": [
+        "107",
+        0
+      ],
+      "sel_mode": false,
+      "input1": [
+        "143",
+        0
+      ],
+      "input2": [
+        "143",
+        0
+      ],
+      "input3": [
+        "54",
+        2
+      ],
+      "input4": [
+        "54",
+        2
+      ],
+      "input5": [
+        "54",
+        2
+      ],
+      "input6": [
+        "54",
+        2
+      ],
+      "input7": [
+        "54",
+        2
+      ],
+      "input8": [
+        "54",
+        2
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "143": {
+    "inputs": {
+      "audio": "example-10-minutes-of-silence.mp3",
+      "start_time": 0,
+      "duration": [
+        "27",
+        2
+      ]
+    },
+    "class_type": "VHS_LoadAudioUpload",
+    "_meta": {
+      "title": "Load Audio (Upload)🎥🅥🅗🅢"
+    }
+  },
+  "145": {
+    "inputs": {
+      "select": [
+        "107",
+        0
+      ],
+      "sel_mode": false,
+      "input1": [
+        "143",
+        0
+      ],
+      "input2": [
+        "143",
+        0
+      ],
+      "input3": [
+        "94",
+        3
+      ],
+      "input4": [
+        "133",
+        0
+      ],
+      "input5": [
+        "94",
+        3
+      ],
+      "input6": [
+        "133",
+        0
+      ],
+      "input7": [
+        "133",
+        0
+      ],
+      "input8": [
+        "133",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Any)"
+    }
+  },
+  "146": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "76",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "148": {
+    "inputs": {
+      "key": "pipe108_mmaudio_model"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "149": {
+    "inputs": {
+      "key": "pipe109_mmaudio_utils"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "150": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "152": {
+    "inputs": {
+      "gain_db": -15,
+      "audio": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "AudioGainNode",
+    "_meta": {
+      "title": "Apply Gain (Universal)"
+    }
+  },
+  "153": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "152",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "154": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "155",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "155": {
+    "inputs": {
+      "gain_db": 0,
+      "audio": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "AudioGainNode",
+    "_meta": {
+      "title": "Apply Gain (Universal)"
+    }
+  },
+  "156": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "157": {
+    "inputs": {
+      "method": "add",
+      "audio_1": [
+        "97",
+        0
+      ],
+      "audio_2": [
+        "158",
+        0
+      ]
+    },
+    "class_type": "AudioCombine",
+    "_meta": {
+      "title": "AudioCombine"
+    }
+  },
+  "158": {
+    "inputs": {
+      "gain_db": -15,
+      "audio": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "AudioGainNode",
+    "_meta": {
+      "title": "Apply Gain (Universal)"
+    }
+  }
+}

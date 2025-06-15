@@ -1,0 +1,297 @@
+{
+  "1": {
+    "inputs": {
+      "key": "pipe101_stable_make-up_sd15_model",
+      "tag": "",
+      "data": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "2": {
+    "inputs": {
+      "ckpt_name": "realDream_15SD15.safetensors",
+      "clip": "openai/clip-vit-large-patch14",
+      "lora": "none",
+      "lora_scale": 1,
+      "lora_trigger_words": "best",
+      "scheduler": "DDIM"
+    },
+    "class_type": "StableMakeup_LoadModel",
+    "_meta": {
+      "title": "StableMakeup_LoadModel"
+    }
+  },
+  "3": {
+    "inputs": {
+      "key": "pipe102_face_parsing_model",
+      "tag": "",
+      "data": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "4": {
+    "inputs": {},
+    "class_type": "FaceParsingProcessorLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingProcessorLoader(FaceParsing)"
+    }
+  },
+  "5": {
+    "inputs": {
+      "device": "cuda"
+    },
+    "class_type": "FaceParsingModelLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingModelLoader(FaceParsing)"
+    }
+  },
+  "6": {
+    "inputs": {
+      "key": "pipe103_face_parsing_processor",
+      "tag": "",
+      "data": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "clip_name1": "t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "clip_l.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "8": {
+    "inputs": {
+      "key": "pipe105_t5xxl_clip_I",
+      "tag": "",
+      "data": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "9": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "10": {
+    "inputs": {
+      "key": "pipe106_ae_vae_flux",
+      "tag": "",
+      "data": [
+        "9",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "21": {
+    "inputs": {
+      "unet_name": "flux1-fill-dev-fp8_12gb.safetensors",
+      "weight_dtype": "fp8_e4m3fn_fast"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "22": {
+    "inputs": {
+      "lora_name": "comfyui_subject_lora16.safetensors",
+      "strength_model": 1,
+      "model": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "23": {
+    "inputs": {
+      "lora_name": "FLUX1-Turbo-Alpha.safetensors",
+      "strength_model": 1,
+      "model": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "24": {
+    "inputs": {
+      "key": "pipe104_flux_fill_loras",
+      "tag": "",
+      "data": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "26": {
+    "inputs": {
+      "model": "microsoft/Florence-2-large",
+      "precision": "fp16",
+      "attention": "sdpa"
+    },
+    "class_type": "DownloadAndLoadFlorence2Model",
+    "_meta": {
+      "title": "DownloadAndLoadFlorence2Model"
+    }
+  },
+  "27": {
+    "inputs": {
+      "key": "pipe107_florence2",
+      "tag": "",
+      "data": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "28": {
+    "inputs": {
+      "key": "pipe108_mmaudio_model",
+      "tag": "",
+      "data": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "29": {
+    "inputs": {
+      "key": "pipe109_mmaudio_utils",
+      "tag": "",
+      "data": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "30": {
+    "inputs": {
+      "mmaudio_model": "mmaudio_large_44k_v2_fp16.safetensors",
+      "base_precision": "fp16"
+    },
+    "class_type": "MMAudioModelLoader",
+    "_meta": {
+      "title": "MMAudio ModelLoader"
+    }
+  },
+  "31": {
+    "inputs": {
+      "vae_model": "mmaudio_vae_44k_fp16.safetensors",
+      "synchformer_model": "mmaudio_synchformer_fp16.safetensors",
+      "clip_model": "apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "mode": "44k",
+      "precision": "fp16"
+    },
+    "class_type": "MMAudioFeatureUtilsLoader",
+    "_meta": {
+      "title": "MMAudio FeatureUtilsLoader"
+    }
+  },
+  "36": {
+    "inputs": {
+      "clip_name": "slig.safetensors"
+    },
+    "class_type": "CLIPVisionLoader",
+    "_meta": {
+      "title": "Load CLIP Vision"
+    }
+  },
+  "37": {
+    "inputs": {
+      "style_model_name": "flux1-redux-dev.safetensors"
+    },
+    "class_type": "StyleModelLoader",
+    "_meta": {
+      "title": "Load Style Model"
+    }
+  },
+  "38": {
+    "inputs": {
+      "key": "pipe111_redux_style_flux",
+      "tag": "",
+      "data": [
+        "37",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  },
+  "39": {
+    "inputs": {
+      "key": "pipe112_slig_clip_vision_flux",
+      "tag": "",
+      "data": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "CacheBackendData //Inspire",
+    "_meta": {
+      "title": "Cache Backend Data (Inspire)"
+    }
+  }
+}

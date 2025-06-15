@@ -1,0 +1,6 @@
+---
+app:
+  serviceType: ClusterIP
+  imageTag: ""
+  gitCommit: ""
+sslCertificateArn: "arn:aws:acm:eu-central-1:722913253728:certificate/68dd9db0-19a1-4921-b025-56df491f5aa8"

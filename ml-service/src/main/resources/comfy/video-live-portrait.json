@@ -1,0 +1,583 @@
+{
+  "1": {
+    "inputs": {
+      "precision": "auto",
+      "mode": "human"
+    },
+    "class_type": "DownloadAndLoadLivePortraitModels",
+    "_meta": {
+      "title": "(Down)Load LivePortraitModels"
+    }
+  },
+  "78": {
+    "inputs": {
+      "image": [
+        "235",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "Get Image Size & Count"
+    }
+  },
+  "81": {
+    "inputs": {
+      "expand": 0,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 13.9,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "83",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur"
+    }
+  },
+  "82": {
+    "inputs": {
+      "mask": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "83": {
+    "inputs": {
+      "shape": "circle",
+      "frames": 1,
+      "location_x": 256,
+      "location_y": 256,
+      "grow": 0,
+      "frame_width": 512,
+      "frame_height": 512,
+      "shape_width": 472,
+      "shape_height": 472
+    },
+    "class_type": "CreateShapeMask",
+    "_meta": {
+      "title": "Create Shape Mask"
+    }
+  },
+  "129": {
+    "inputs": {
+      "onnx_device": "CUDA",
+      "keep_model_loaded": true,
+      "detection_threshold": 0.5
+    },
+    "class_type": "LivePortraitLoadCropper",
+    "_meta": {
+      "title": "LivePortrait Load IFCropper"
+    }
+  },
+  "146": {
+    "inputs": {
+      "video": "___input___",
+      "force_rate": 25,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "168": {
+    "inputs": {
+      "frame_rate": [
+        "193",
+        5
+      ],
+      "loop_count": 0,
+      "filename_prefix": "___outputPrefix___",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "181",
+        0
+      ],
+      "audio": [
+        "235",
+        1
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "181": {
+    "inputs": {
+      "image": [
+        "191",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "Get Image Size & Count"
+    }
+  },
+  "182": {
+    "inputs": {
+      "image": [
+        "201",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "Get Image Size & Count"
+    }
+  },
+  "189": {
+    "inputs": {
+      "dsize": 512,
+      "scale": 2.3000000000000003,
+      "vx_ratio": 0,
+      "vy_ratio": -0.125,
+      "face_index": 0,
+      "face_index_order": "large-small",
+      "rotate": true,
+      "pipeline": [
+        "238",
+        0
+      ],
+      "cropper": [
+        "226",
+        0
+      ],
+      "source_image": [
+        "78",
+        0
+      ]
+    },
+    "class_type": "LivePortraitCropper",
+    "_meta": {
+      "title": "LivePortrait Cropper"
+    }
+  },
+  "190": {
+    "inputs": {
+      "lip_zero": false,
+      "lip_zero_threshold": 0.03,
+      "stitching": true,
+      "delta_multiplier": 1,
+      "mismatch_method": "constant",
+      "relative_motion_mode": "source_video_smoothed",
+      "driving_smooth_observation_variance": 0.000003,
+      "expression_friendly": false,
+      "expression_friendly_multiplier": 1,
+      "pipeline": [
+        "238",
+        0
+      ],
+      "crop_info": [
+        "189",
+        1
+      ],
+      "source_image": [
+        "78",
+        0
+      ],
+      "driving_images": [
+        "236",
+        0
+      ]
+    },
+    "class_type": "LivePortraitProcess",
+    "_meta": {
+      "title": "LivePortrait Process"
+    }
+  },
+  "191": {
+    "inputs": {
+      "source_image": [
+        "78",
+        0
+      ],
+      "cropped_image": [
+        "190",
+        0
+      ],
+      "liveportrait_out": [
+        "190",
+        1
+      ],
+      "mask": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "LivePortraitComposite",
+    "_meta": {
+      "title": "LivePortrait Composite"
+    }
+  },
+  "193": {
+    "inputs": {
+      "video_info": [
+        "146",
+        3
+      ]
+    },
+    "class_type": "VHS_VideoInfo",
+    "_meta": {
+      "title": "Video Info 🎥🅥🅗🅢"
+    }
+  },
+  "196": {
+    "inputs": {
+      "landmarkrunner_onnx_device": "CUDA",
+      "keep_model_loaded": true
+    },
+    "class_type": "LivePortraitLoadMediaPipeCropper",
+    "_meta": {
+      "title": "LivePortrait Load MPCropper"
+    }
+  },
+  "200": {
+    "inputs": {
+      "image": "example-image.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "201": {
+    "inputs": {
+      "seed": ___seed___,
+      "inference_steps": 16,
+      "dynamic_scale": 1,
+      "fps": 25,
+      "model": [
+        "249",
+        0
+      ],
+      "data_dict": [
+        "205",
+        0
+      ]
+    },
+    "class_type": "SONICSampler",
+    "_meta": {
+      "title": "SONICSampler"
+    }
+  },
+  "202": {
+    "inputs": {
+      "frame_rate": [
+        "201",
+        1
+      ],
+      "loop_count": 0,
+      "filename_prefix": "sonic_text-to-speech",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false,
+      "images": [
+        "201",
+        0
+      ],
+      "audio": [
+        "229",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "205": {
+    "inputs": {
+      "min_resolution": 256,
+      "duration": 15,
+      "expand_ratio": 0.5,
+      "clip_vision": [
+        "251",
+        0
+      ],
+      "vae": [
+        "252",
+        0
+      ],
+      "audio": [
+        "229",
+        0
+      ],
+      "image": [
+        "208",
+        0
+      ],
+      "weight_dtype": [
+        "250",
+        0
+      ]
+    },
+    "class_type": "SONIC_PreData",
+    "_meta": {
+      "title": "SONIC_PreData"
+    }
+  },
+  "207": {
+    "inputs": {
+      "value": [
+        "229",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "208": {
+    "inputs": {
+      "number_of_faces": 5,
+      "scale_factor": 2.5,
+      "shift_factor": 0.61,
+      "start_index": 0,
+      "max_faces_per_image": 50,
+      "aspect_ratio": "1:1",
+      "image": [
+        "200",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "209": {
+    "inputs": {
+      "images": [
+        "208",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "210": {
+    "inputs": {
+      "video": "___sourceVideo___",
+      "force_rate": 25,
+      "custom_width": 0,
+      "custom_height": 0,
+      "frame_load_cap": 0,
+      "skip_first_frames": 0,
+      "select_every_nth": 1,
+      "format": "AnimateDiff"
+    },
+    "class_type": "VHS_LoadVideo",
+    "_meta": {
+      "title": "Load Video (Upload) 🎥🅥🅗🅢"
+    }
+  },
+  "212": {
+    "inputs": {
+      "audio": "___sourceAudio___",
+      "start_time": ___startTime___,
+      "duration": ___duration___
+    },
+    "class_type": "VHS_LoadAudioUpload",
+    "_meta": {
+      "title": "Load Audio (Upload)🎥🅥🅗🅢"
+    }
+  },
+  "218": {
+    "inputs": {
+      "select": ___contextValue2___,
+      "sel_mode": true,
+      "input1": [
+        "129",
+        0
+      ],
+      "input2": [
+        "196",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (LivePortrait)"
+    }
+  },
+  "226": {
+    "inputs": {
+      "value": [
+        "218",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "227": {
+    "inputs": {
+      "select": ___contextValue___,
+      "sel_mode": true,
+      "input1": [
+        "212",
+        0
+      ],
+      "input2": [
+        "210",
+        2
+      ],
+      "input3": [
+        "146",
+        2
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (AudioInput)"
+    }
+  },
+  "229": {
+    "inputs": {
+      "value": [
+        "227",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "235": {
+    "inputs": {
+      "mode": "pingpong",
+      "fps": 25,
+      "silent_padding_sec": 0.1,
+      "images": [
+        "146",
+        0
+      ],
+      "audio": [
+        "207",
+        0
+      ]
+    },
+    "class_type": "D_VideoLengthAdjuster",
+    "_meta": {
+      "title": "Video Length Adjuster"
+    }
+  },
+  "236": {
+    "inputs": {
+      "mode": "pingpong",
+      "fps": 25,
+      "silent_padding_sec": 0.1,
+      "images": [
+        "182",
+        0
+      ],
+      "audio": [
+        "207",
+        0
+      ]
+    },
+    "class_type": "D_VideoLengthAdjuster",
+    "_meta": {
+      "title": "Video Length Adjuster"
+    }
+  },
+  "238": {
+    "inputs": {
+      "select": ___contextValue3___,
+      "sel_mode": true,
+      "input1": [
+        "1",
+        0
+      ],
+      "input2": [
+        "240",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Model)"
+    }
+  },
+  "240": {
+    "inputs": {
+      "precision": "auto",
+      "mode": "animal"
+    },
+    "class_type": "DownloadAndLoadLivePortraitModels",
+    "_meta": {
+      "title": "(Down)Load LivePortraitModels"
+    }
+  },
+  "249": {
+    "inputs": {
+      "key": "pipe201_lip-sync_svd_unet_model"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "250": {
+    "inputs": {
+      "key": "pipe202_lip-sync_svd_unet_dtype"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "251": {
+    "inputs": {
+      "key": "pipe203_lip-sync_svd_clip_vision"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "252": {
+    "inputs": {
+      "key": "pipe204_lip-sync_svd_vae"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  }
+}

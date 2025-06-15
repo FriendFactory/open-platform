@@ -1,0 +1,16 @@
+[Unit]
+Description=Loki service
+Wants=network.target cloud-config.service
+After=network.target syslog.target
+
+[Service]
+User=root
+Group=root
+Restart=always
+RestartSec=10
+StartLimitBurst=5
+ExecStart={{ loki_path }}/loki-{{ loki_version }} -config.file={{ loki_path }}/{{ loki_config_file }}
+
+[Install]
+WantedBy=multi-user.target
+

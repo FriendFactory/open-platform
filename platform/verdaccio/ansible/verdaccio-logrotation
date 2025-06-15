@@ -1,0 +1,14 @@
+/home/ec2-user/verdaccio.log
+{
+  rotate 3
+  daily
+  compress
+  missingok
+  notifempty
+  postrotate
+    systemctl restart rsyslog.service
+    systemctl restart verdaccio.service
+  endscript
+  create 0640 ec2-user ec2-user
+}
+

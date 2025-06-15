@@ -1,0 +1,4300 @@
+{
+  "6": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "234",
+        0
+      ],
+      "image2": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "Image Concatenate"
+    }
+  },
+  "7": {
+    "inputs": {
+      "width": [
+        "234",
+        1
+      ],
+      "height": [
+        "234",
+        2
+      ],
+      "keep_proportions": true,
+      "upscale_method": "nearest-exact",
+      "crop": "disabled",
+      "mask": [
+        "391",
+        0
+      ]
+    },
+    "class_type": "ResizeMask",
+    "_meta": {
+      "title": "Resize Mask"
+    }
+  },
+  "8": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
+  },
+  "9": {
+    "inputs": {
+      "mask": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "10": {
+    "inputs": {
+      "direction": "right",
+      "match_image_size": true,
+      "image1": [
+        "9",
+        0
+      ],
+      "image2": [
+        "11",
+        0
+      ]
+    },
+    "class_type": "ImageConcanate",
+    "_meta": {
+      "title": "Image Concatenate"
+    }
+  },
+  "11": {
+    "inputs": {
+      "width": [
+        "18",
+        1
+      ],
+      "height": [
+        "18",
+        2
+      ],
+      "batch_size": 1,
+      "color": 0
+    },
+    "class_type": "EmptyImage",
+    "_meta": {
+      "title": "EmptyImage"
+    }
+  },
+  "12": {
+    "inputs": {
+      "images": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "18": {
+    "inputs": {
+      "width": 0,
+      "height": 512,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "height_input": [
+        "234",
+        2
+      ],
+      "crop": "disabled",
+      "image": [
+        "422",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "Resize Image"
+    }
+  },
+  "22": {
+    "inputs": {
+      "images": [
+        "530",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "23": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "669",
+        0
+      ],
+      "florence2_model": [
+        "233",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "24": {
+    "inputs": {
+      "text": [
+        "293",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "25": {
+    "inputs": {
+      "kernel_size": 20,
+      "sigma": 10,
+      "mask": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "26": {
+    "inputs": {
+      "mask": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "27": {
+    "inputs": {
+      "images": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "34": {
+    "inputs": {
+      "key": "pipe104_flux_fill_loras"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "39": {
+    "inputs": {
+      "width": [
+        "234",
+        1
+      ],
+      "height": [
+        "234",
+        2
+      ],
+      "x": 0,
+      "y": 0,
+      "image": [
+        "530",
+        0
+      ]
+    },
+    "class_type": "ImageCrop",
+    "_meta": {
+      "title": "Image Crop"
+    }
+  },
+  "44": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "45": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 10,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "bbox_detector": [
+        "44",
+        0
+      ],
+      "image": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "46": {
+    "inputs": {
+      "mask": [
+        "53",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "47": {
+    "inputs": {
+      "mask": [
+        "53",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "49": {
+    "inputs": {
+      "mask": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "50": {
+    "inputs": {
+      "mask": [
+        "215",
+        1
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "51": {
+    "inputs": {
+      "mask": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "52": {
+    "inputs": {
+      "mask": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "53": {
+    "inputs": {
+      "detection_hint": "center-1",
+      "dilation": 0,
+      "threshold": 0.93,
+      "bbox_expansion": 0,
+      "mask_hint_threshold": 0.7,
+      "mask_hint_use_negative": "False",
+      "sam_model": [
+        "57",
+        0
+      ],
+      "segs": [
+        "45",
+        0
+      ],
+      "image": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "SAMDetectorCombined",
+    "_meta": {
+      "title": "SAMDetector (combined)"
+    }
+  },
+  "54": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "47",
+        0
+      ],
+      "source": [
+        "50",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "57": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "Prefer GPU"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "59": {
+    "inputs": {
+      "sampler_name": "euler"
+    },
+    "class_type": "KSamplerSelect",
+    "_meta": {
+      "title": "KSamplerSelect"
+    }
+  },
+  "60": {
+    "inputs": {
+      "noise_seed": ___seed___
+    },
+    "class_type": "RandomNoise",
+    "_meta": {
+      "title": "RandomNoise"
+    }
+  },
+  "61": {
+    "inputs": {
+      "noise": [
+        "60",
+        0
+      ],
+      "guider": [
+        "64",
+        0
+      ],
+      "sampler": [
+        "59",
+        0
+      ],
+      "sigmas": [
+        "66",
+        0
+      ],
+      "latent_image": [
+        "63",
+        0
+      ]
+    },
+    "class_type": "SamplerCustomAdvanced",
+    "_meta": {
+      "title": "SamplerCustomAdvanced"
+    }
+  },
+  "63": {
+    "inputs": {
+      "width": 304,
+      "height": 544,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "64": {
+    "inputs": {
+      "model": [
+        "72",
+        0
+      ],
+      "conditioning": [
+        "65",
+        0
+      ]
+    },
+    "class_type": "BasicGuider",
+    "_meta": {
+      "title": "BasicGuider"
+    }
+  },
+  "65": {
+    "inputs": {
+      "guidance": 3,
+      "conditioning": [
+        "69",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "66": {
+    "inputs": {
+      "scheduler": "simple",
+      "steps": 8,
+      "denoise": 1,
+      "model": [
+        "72",
+        0
+      ]
+    },
+    "class_type": "BasicScheduler",
+    "_meta": {
+      "title": "BasicScheduler"
+    }
+  },
+  "69": {
+    "inputs": {
+      "text": [
+        "479",
+        0
+      ],
+      "clip": [
+        "502",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "71": {
+    "inputs": {
+      "model": [
+        "515",
+        0
+      ]
+    },
+    "class_type": "FluxForwardOverrider",
+    "_meta": {
+      "title": "FluxForwardOverrider"
+    }
+  },
+  "72": {
+    "inputs": {
+      "rel_l1_thresh": 0.6,
+      "model": [
+        "71",
+        0
+      ]
+    },
+    "class_type": "ApplyTeaCachePatch",
+    "_meta": {
+      "title": "ApplyTeaCachePatch"
+    }
+  },
+  "75": {
+    "inputs": {
+      "images": [
+        "317",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "77": {
+    "inputs": {
+      "axis": "y",
+      "mask": [
+        "140",
+        0
+      ]
+    },
+    "class_type": "MaskFlip+",
+    "_meta": {
+      "title": "🔧 Mask Flip"
+    }
+  },
+  "78": {
+    "inputs": {
+      "mask": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "80": {
+    "inputs": {
+      "mask": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "81": {
+    "inputs": {
+      "x": 0,
+      "y": 100,
+      "angle": 0,
+      "duplication_factor": 1,
+      "roll": false,
+      "incremental": false,
+      "padding_mode": "empty",
+      "mask": [
+        "77",
+        0
+      ]
+    },
+    "class_type": "OffsetMask",
+    "_meta": {
+      "title": "Offset Mask"
+    }
+  },
+  "83": {
+    "inputs": {
+      "axis": "y",
+      "mask": [
+        "81",
+        0
+      ]
+    },
+    "class_type": "MaskFlip+",
+    "_meta": {
+      "title": "🔧 Mask Flip"
+    }
+  },
+  "84": {
+    "inputs": {
+      "mask": [
+        "83",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "89": {
+    "inputs": {
+      "mask": [
+        "473",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "90": {
+    "inputs": {
+      "mask": [
+        "89",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "91": {
+    "inputs": {
+      "background": false,
+      "skin": false,
+      "nose": false,
+      "eye_g": false,
+      "r_eye": true,
+      "l_eye": true,
+      "r_brow": true,
+      "l_brow": true,
+      "r_ear": false,
+      "l_ear": false,
+      "mouth": false,
+      "u_lip": false,
+      "l_lip": false,
+      "hair": false,
+      "hat": false,
+      "ear_r": false,
+      "neck_l": false,
+      "neck": false,
+      "cloth": false,
+      "result": [
+        "92",
+        0
+      ]
+    },
+    "class_type": "FaceParsingResultsParser(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingResultsParser(FaceParsing)"
+    }
+  },
+  "92": {
+    "inputs": {
+      "value": [
+        "93",
+        1
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "93": {
+    "inputs": {
+      "model": [
+        "122",
+        0
+      ],
+      "processor": [
+        "123",
+        0
+      ],
+      "image": [
+        "290",
+        0
+      ]
+    },
+    "class_type": "FaceParse(FaceParsing)",
+    "_meta": {
+      "title": "FaceParse(FaceParsing)"
+    }
+  },
+  "94": {
+    "inputs": {
+      "images": [
+        "93",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "95": {
+    "inputs": {
+      "expand": 50,
+      "incremental_expandrate": 0,
+      "tapered_corners": true,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "91",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur (Eyeshadow)"
+    }
+  },
+  "96": {
+    "inputs": {
+      "mask": [
+        "95",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "97": {
+    "inputs": {
+      "value": 0,
+      "width": 608,
+      "height": 1080
+    },
+    "class_type": "SolidMask",
+    "_meta": {
+      "title": "SolidMask"
+    }
+  },
+  "98": {
+    "inputs": {
+      "value": 0,
+      "width": 608,
+      "height": 1080
+    },
+    "class_type": "SolidMask",
+    "_meta": {
+      "title": "SolidMask"
+    }
+  },
+  "99": {
+    "inputs": {
+      "mask": [
+        "98",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "100": {
+    "inputs": {
+      "mask": [
+        "111",
+        1
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "101": {
+    "inputs": {
+      "bbox_threshold": 0.3,
+      "bbox_dilation": 0,
+      "crop_factor": 1,
+      "drop_size": 1,
+      "sub_threshold": 0.5,
+      "sub_dilation": 0,
+      "sub_bbox_expansion": 0,
+      "sam_mask_hint_threshold": 0.7,
+      "post_dilation": 5,
+      "bbox_detector": [
+        "120",
+        0
+      ],
+      "image": [
+        "368",
+        0
+      ],
+      "sam_model_opt": [
+        "118",
+        0
+      ]
+    },
+    "class_type": "ImpactSimpleDetectorSEGS",
+    "_meta": {
+      "title": "Simple Detector (SEGS)"
+    }
+  },
+  "102": {
+    "inputs": {
+      "target": "area(=w*h)",
+      "order": true,
+      "take_start": 0,
+      "take_count": 1,
+      "segs": [
+        "101",
+        0
+      ]
+    },
+    "class_type": "ImpactSEGSOrderedFilter",
+    "_meta": {
+      "title": "SEGS Filter (ordered)"
+    }
+  },
+  "103": {
+    "inputs": {
+      "mask": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "104": {
+    "inputs": {
+      "x": 61,
+      "y": 50,
+      "angle": 0,
+      "duplication_factor": 1,
+      "roll": false,
+      "incremental": false,
+      "padding_mode": "empty",
+      "mask": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "OffsetMask",
+    "_meta": {
+      "title": "Offset Mask"
+    }
+  },
+  "105": {
+    "inputs": {
+      "mask": [
+        "668",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "106": {
+    "inputs": {
+      "mask": [
+        "657",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "107": {
+    "inputs": {
+      "mask": [
+        "146",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "108": {
+    "inputs": {
+      "mask": [
+        "145",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "109": {
+    "inputs": {
+      "expand": 170,
+      "tapered_corners": true,
+      "mask": [
+        "104",
+        0
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "110": {
+    "inputs": {
+      "mask": [
+        "339",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "111": {
+    "inputs": {
+      "Hat": false,
+      "Hair": true,
+      "Face": true,
+      "Sunglasses": false,
+      "Upper-clothes": false,
+      "Skirt": false,
+      "Dress": false,
+      "Belt": false,
+      "Pants": false,
+      "Left-arm": false,
+      "Right-arm": false,
+      "Left-leg": false,
+      "Right-leg": false,
+      "Bag": false,
+      "Scarf": false,
+      "Left-shoe": false,
+      "Right-shoe": false,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "368",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "112": {
+    "inputs": {
+      "mask": [
+        "300",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "113": {
+    "inputs": {
+      "mask": [
+        "320",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "114": {
+    "inputs": {
+      "images": [
+        "289",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "116": {
+    "inputs": {
+      "images": [
+        "299",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "117": {
+    "inputs": {
+      "mask": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "118": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "Prefer GPU"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "120": {
+    "inputs": {
+      "model_name": "bbox/hand_yolov8s.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "122": {
+    "inputs": {
+      "device": "cuda"
+    },
+    "class_type": "FaceParsingModelLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingModelLoader(FaceParsing)"
+    }
+  },
+  "123": {
+    "inputs": {},
+    "class_type": "FaceParsingProcessorLoader(FaceParsing)",
+    "_meta": {
+      "title": "FaceParsingProcessorLoader(FaceParsing)"
+    }
+  },
+  "128": {
+    "inputs": {
+      "mask": [
+        "326",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "135": {
+    "inputs": {
+      "kernel_size": 80,
+      "sigma": 50,
+      "mask": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "136": {
+    "inputs": {
+      "invert_mask": false,
+      "grow": 30,
+      "blur": 0,
+      "mask": [
+        "137",
+        0
+      ]
+    },
+    "class_type": "LayerMask: MaskGrow",
+    "_meta": {
+      "title": "LayerMask: MaskGrow"
+    }
+  },
+  "137": {
+    "inputs": {
+      "segs": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "SegsToCombinedMask",
+    "_meta": {
+      "title": "SEGS to MASK (combined)"
+    }
+  },
+  "138": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "139": {
+    "inputs": {
+      "mask": [
+        "137",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "140": {
+    "inputs": {
+      "value": 0.2,
+      "mask": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "ThresholdMask",
+    "_meta": {
+      "title": "ThresholdMask"
+    }
+  },
+  "145": {
+    "inputs": {
+      "segs": [
+        "101",
+        0
+      ]
+    },
+    "class_type": "SegsToCombinedMask",
+    "_meta": {
+      "title": "SEGS to MASK (combined)"
+    }
+  },
+  "146": {
+    "inputs": {
+      "segs": [
+        "102",
+        0
+      ]
+    },
+    "class_type": "SegsToCombinedMask",
+    "_meta": {
+      "title": "SEGS to MASK (combined)"
+    }
+  },
+  "147": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 20,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "bbox_detector": [
+        "138",
+        0
+      ],
+      "image": [
+        "366",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "148": {
+    "inputs": {
+      "mask": [
+        "259",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "149": {
+    "inputs": {
+      "mask": [
+        "330",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "150": {
+    "inputs": {
+      "mask": [
+        "148",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "151": {
+    "inputs": {
+      "mask": [
+        "161",
+        1
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "152": {
+    "inputs": {
+      "mask": [
+        "500",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "153": {
+    "inputs": {
+      "mask": [
+        "259",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "156": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "AUTO"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "157": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "158": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 10,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "bbox_detector": [
+        "157",
+        0
+      ],
+      "image": [
+        "369",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "161": {
+    "inputs": {
+      "Hat": true,
+      "Hair": true,
+      "Face": false,
+      "Sunglasses": true,
+      "Upper-clothes": true,
+      "Skirt": true,
+      "Dress": true,
+      "Belt": true,
+      "Pants": true,
+      "Left-arm": true,
+      "Right-arm": true,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": true,
+      "Scarf": true,
+      "Left-shoe": true,
+      "Right-shoe": true,
+      "Background": true,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 5,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "369",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "165": {
+    "inputs": {
+      "images": [
+        "305",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "166": {
+    "inputs": {
+      "mask": [
+        "305",
+        1
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "197": {
+    "inputs": {
+      "mask": [
+        "323",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "210": {
+    "inputs": {
+      "mask": [
+        "211",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "211": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "212",
+        0
+      ],
+      "source": [
+        "54",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "212": {
+    "inputs": {
+      "dilation": 200,
+      "mask": [
+        "218",
+        1
+      ]
+    },
+    "class_type": "ImpactDilateMask",
+    "_meta": {
+      "title": "Dilate Mask"
+    }
+  },
+  "213": {
+    "inputs": {
+      "mask": [
+        "212",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "215": {
+    "inputs": {
+      "Hat": false,
+      "Hair": false,
+      "Face": false,
+      "Sunglasses": false,
+      "Upper-clothes": true,
+      "Skirt": false,
+      "Dress": true,
+      "Belt": false,
+      "Pants": true,
+      "Left-arm": true,
+      "Right-arm": true,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": true,
+      "Scarf": true,
+      "Left-shoe": false,
+      "Right-shoe": false,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": -5,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "216": {
+    "inputs": {
+      "images": [
+        "229",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "218": {
+    "inputs": {
+      "Hat": false,
+      "Hair": true,
+      "Face": true,
+      "Sunglasses": false,
+      "Upper-clothes": false,
+      "Skirt": false,
+      "Dress": false,
+      "Belt": false,
+      "Pants": false,
+      "Left-arm": false,
+      "Right-arm": false,
+      "Left-leg": false,
+      "Right-leg": false,
+      "Bag": false,
+      "Scarf": false,
+      "Left-shoe": false,
+      "Right-shoe": false,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 5,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "365",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "220": {
+    "inputs": {
+      "mask": [
+        "333",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "223": {
+    "inputs": {
+      "samples": [
+        "61",
+        0
+      ],
+      "vae": [
+        "501",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "229": {
+    "inputs": {
+      "Hat": false,
+      "Hair": true,
+      "Face": true,
+      "Sunglasses": false,
+      "Upper-clothes": false,
+      "Skirt": false,
+      "Dress": false,
+      "Belt": false,
+      "Pants": false,
+      "Left-arm": false,
+      "Right-arm": false,
+      "Left-leg": false,
+      "Right-leg": false,
+      "Bag": false,
+      "Scarf": false,
+      "Left-shoe": false,
+      "Right-shoe": false,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 5,
+      "background_color": "gray",
+      "invert_output": false,
+      "images": [
+        "671",
+        1
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "233": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "234": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "237",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "Resize Image"
+    }
+  },
+  "237": {
+    "inputs": {
+      "image": "___input___"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "241": {
+    "inputs": {
+      "text": [
+        "245",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "245": {
+    "inputs": {
+      "part1": [
+        "658",
+        0
+      ],
+      "part2": [
+        "246",
+        2
+      ],
+      "part3": "",
+      "part4": [
+        "459",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "246": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        4
+      ],
+      "florence2_model": [
+        "389",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "248": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": false,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "398",
+        0
+      ],
+      "florence2_model": [
+        "388",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "249": {
+    "inputs": {
+      "text": [
+        "252",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "252": {
+    "inputs": {
+      "part1": [
+        "485",
+        0
+      ],
+      "part2": [
+        "248",
+        2
+      ],
+      "part3": "",
+      "part4": [
+        "487",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "259": {
+    "inputs": {
+      "detection_hint": "center-1",
+      "dilation": 3,
+      "threshold": 0.93,
+      "bbox_expansion": 0,
+      "mask_hint_threshold": 0.7,
+      "mask_hint_use_negative": "False",
+      "sam_model": [
+        "156",
+        0
+      ],
+      "segs": [
+        "158",
+        0
+      ],
+      "image": [
+        "369",
+        0
+      ]
+    },
+    "class_type": "SAMDetectorCombined",
+    "_meta": {
+      "title": "SAMDetector (combined)"
+    }
+  },
+  "267": {
+    "inputs": {
+      "number": [
+        "335",
+        0
+      ]
+    },
+    "class_type": "Number to Int",
+    "_meta": {
+      "title": "Number to Int"
+    }
+  },
+  "289": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "resize_source": false,
+      "destination": [
+        "367",
+        0
+      ],
+      "source": [
+        "99",
+        0
+      ],
+      "mask": [
+        "300",
+        0
+      ]
+    },
+    "class_type": "ImageCompositeMasked",
+    "_meta": {
+      "title": "ImageCompositeMasked"
+    }
+  },
+  "290": {
+    "inputs": {
+      "number_of_faces": 5,
+      "scale_factor": 2.5,
+      "shift_factor": 0.49,
+      "start_index": 0,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "1:1",
+      "image": [
+        "367",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "293": {
+    "inputs": {
+      "part3": "{image} ",
+      "part4": [
+        "23",
+        2
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "297": {
+    "inputs": {
+      "image": "___source___"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load New Face"
+    }
+  },
+  "299": {
+    "inputs": {
+      "crop_blending": 0.25,
+      "crop_sharpening": 0,
+      "image": [
+        "302",
+        0
+      ],
+      "crop_image": [
+        "96",
+        0
+      ],
+      "crop_data": [
+        "290",
+        1
+      ]
+    },
+    "class_type": "Image Paste Face",
+    "_meta": {
+      "title": "Image Paste Face"
+    }
+  },
+  "300": {
+    "inputs": {
+      "channel": "red",
+      "image": [
+        "299",
+        0
+      ]
+    },
+    "class_type": "ImageToMask",
+    "_meta": {
+      "title": "Convert Image to Mask"
+    }
+  },
+  "301": {
+    "inputs": {
+      "images": [
+        "96",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "302": {
+    "inputs": {
+      "mask": [
+        "97",
+        0
+      ]
+    },
+    "class_type": "MaskToImage",
+    "_meta": {
+      "title": "Convert Mask to Image"
+    }
+  },
+  "305": {
+    "inputs": {
+      "Hat": false,
+      "Hair": false,
+      "Face": false,
+      "Sunglasses": false,
+      "Upper-clothes": false,
+      "Skirt": false,
+      "Dress": false,
+      "Belt": false,
+      "Pants": false,
+      "Left-arm": false,
+      "Right-arm": false,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": false,
+      "Scarf": false,
+      "Left-shoe": true,
+      "Right-shoe": true,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "378",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "310": {
+    "inputs": {
+      "select": [
+        "267",
+        0
+      ],
+      "sel_mode": false,
+      "input": [
+        "237",
+        0
+      ]
+    },
+    "class_type": "ImpactInversedSwitch",
+    "_meta": {
+      "title": "Inversed Switch (wardrobe)"
+    }
+  },
+  "317": {
+    "inputs": {
+      "Hat": false,
+      "Hair": false,
+      "Face": false,
+      "Sunglasses": false,
+      "Upper-clothes": true,
+      "Skirt": true,
+      "Dress": true,
+      "Belt": true,
+      "Pants": true,
+      "Left-arm": true,
+      "Right-arm": true,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": true,
+      "Scarf": false,
+      "Left-shoe": true,
+      "Right-shoe": true,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 20,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "355",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "318": {
+    "inputs": {
+      "mask": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "319": {
+    "inputs": {
+      "mask": [
+        "136",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "320": {
+    "inputs": {
+      "value": 0,
+      "mask": [
+        "300",
+        0
+      ]
+    },
+    "class_type": "ThresholdMask",
+    "_meta": {
+      "title": "ThresholdMask"
+    }
+  },
+  "323": {
+    "inputs": {
+      "expand": 30,
+      "tapered_corners": true,
+      "mask": [
+        "305",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "325": {
+    "inputs": {
+      "value": [
+        "320",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "326": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "83",
+        0
+      ],
+      "source": [
+        "89",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "327": {
+    "inputs": {
+      "value": [
+        "326",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "328": {
+    "inputs": {
+      "value": [
+        "325",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "329": {
+    "inputs": {
+      "value": [
+        "323",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "330": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "148",
+        0
+      ],
+      "source": [
+        "500",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "331": {
+    "inputs": {
+      "value": [
+        "330",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "332": {
+    "inputs": {
+      "value": [
+        "633",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "333": {
+    "inputs": {
+      "expand": 0,
+      "incremental_expandrate": 0,
+      "tapered_corners": false,
+      "flip_input": false,
+      "blur_radius": 0,
+      "lerp_alpha": 1,
+      "decay_factor": 1,
+      "fill_holes": false,
+      "mask": [
+        "211",
+        0
+      ]
+    },
+    "class_type": "GrowMaskWithBlur",
+    "_meta": {
+      "title": "Grow Mask With Blur"
+    }
+  },
+  "334": {
+    "inputs": {
+      "value": [
+        "333",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "335": {
+    "inputs": {
+      "int": ___contextValue___
+    },
+    "class_type": "Int To Number (mtb)",
+    "_meta": {
+      "title": "Int To Number (mtb)"
+    }
+  },
+  "336": {
+    "inputs": {
+      "value": [
+        "329",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "337": {
+    "inputs": {
+      "value": [
+        "331",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "338": {
+    "inputs": {
+      "value": [
+        "340",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "339": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "657",
+        0
+      ],
+      "source": [
+        "100",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "340": {
+    "inputs": {
+      "value": [
+        "339",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "341": {
+    "inputs": {
+      "value": [
+        "332",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "342": {
+    "inputs": {
+      "value": [
+        "334",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "343": {
+    "inputs": {
+      "value": [
+        "327",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "353": {
+    "inputs": {
+      "value": [
+        "310",
+        1
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "355": {
+    "inputs": {
+      "value": [
+        "310",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "359": {
+    "inputs": {
+      "value": [
+        "310",
+        2
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "360": {
+    "inputs": {
+      "value": [
+        "310",
+        3
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "362": {
+    "inputs": {
+      "value": [
+        "310",
+        4
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "363": {
+    "inputs": {
+      "value": [
+        "310",
+        5
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "365": {
+    "inputs": {
+      "value": [
+        "353",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "366": {
+    "inputs": {
+      "value": [
+        "359",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "367": {
+    "inputs": {
+      "value": [
+        "360",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "368": {
+    "inputs": {
+      "value": [
+        "362",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "369": {
+    "inputs": {
+      "value": [
+        "363",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "377": {
+    "inputs": {
+      "value": [
+        "310",
+        6
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "378": {
+    "inputs": {
+      "value": [
+        "377",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "388": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "389": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "391": {
+    "inputs": {
+      "select": ___contextValue___,
+      "sel_mode": true,
+      "input1": [
+        "341",
+        0
+      ],
+      "input2": [
+        "342",
+        0
+      ],
+      "input3": [
+        "343",
+        0
+      ],
+      "input4": [
+        "328",
+        0
+      ],
+      "input5": [
+        "338",
+        0
+      ],
+      "input6": [
+        "337",
+        0
+      ],
+      "input7": [
+        "336",
+        0
+      ],
+      "input8": [
+        "609",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Wardrobe)"
+    }
+  },
+  "398": {
+    "inputs": {
+      "padding_left": 5,
+      "padding_right": 5,
+      "padding_top": 5,
+      "padding_bottom": 5,
+      "return_list": false,
+      "image": [
+        "229",
+        0
+      ],
+      "mask": [
+        "229",
+        1
+      ]
+    },
+    "class_type": "Bounded Image Crop with Mask",
+    "_meta": {
+      "title": "Bounded Image Crop with Mask"
+    }
+  },
+  "399": {
+    "inputs": {
+      "images": [
+        "398",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "406": {
+    "inputs": {
+      "text_input": "",
+      "task": "detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        2
+      ],
+      "florence2_model": [
+        "407",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "407": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "408": {
+    "inputs": {
+      "part1": [
+        "495",
+        0
+      ],
+      "part2": [
+        "406",
+        2
+      ],
+      "part3": "",
+      "part4": [
+        "454",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "409": {
+    "inputs": {
+      "text": [
+        "408",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "416": {
+    "inputs": {
+      "select": ___contextValue3___,
+      "sel_mode": true,
+      "input1": [
+        "391",
+        0
+      ],
+      "input2": [
+        "418",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (Mask)"
+    }
+  },
+  "418": {
+    "inputs": {
+      "image": "___mask___",
+      "channel": "alpha"
+    },
+    "class_type": "LoadImageMask",
+    "_meta": {
+      "title": "MANUAL MASK"
+    }
+  },
+  "422": {
+    "inputs": {
+      "select": ___contextValue2___,
+      "sel_mode": true,
+      "input1": [
+        "297",
+        0
+      ],
+      "input2": [
+        "551",
+        1
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (reference)"
+    }
+  },
+  "429": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        3
+      ],
+      "florence2_model": [
+        "433",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "430": {
+    "inputs": {
+      "part3": "{image} ",
+      "part4": [
+        "429",
+        2
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "431": {
+    "inputs": {
+      "text": [
+        "430",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "433": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "435": {
+    "inputs": {
+      "select": ___contextValue___,
+      "sel_mode": true,
+      "input1": [
+        "293",
+        0
+      ],
+      "input2": [
+        "252",
+        0
+      ],
+      "input3": [
+        "408",
+        0
+      ],
+      "input4": [
+        "430",
+        0
+      ],
+      "input5": [
+        "245",
+        0
+      ],
+      "input6": [
+        "443",
+        0
+      ],
+      "input7": [
+        "448",
+        0
+      ],
+      "input8": [
+        "612",
+        0
+      ]
+    },
+    "class_type": "ImpactSwitch",
+    "_meta": {
+      "title": "Switch (wardrobe)"
+    }
+  },
+  "437": {
+    "inputs": {
+      "text": [
+        "435",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "438": {
+    "inputs": {
+      "images": [
+        "422",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "439": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        5
+      ],
+      "florence2_model": [
+        "440",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "440": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "441": {
+    "inputs": {
+      "text": [
+        "443",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "443": {
+    "inputs": {
+      "part1": [
+        "499",
+        0
+      ],
+      "part2": [
+        "439",
+        2
+      ],
+      "part3": "",
+      "part4": [
+        "498",
+        0
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "444": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        6
+      ],
+      "florence2_model": [
+        "445",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "445": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "446": {
+    "inputs": {
+      "text": [
+        "448",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "448": {
+    "inputs": {
+      "part3": "{image} ",
+      "part4": [
+        "444",
+        2
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "450": {
+    "inputs": {
+      "rgthree_comparer": {
+        "images": [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_vqppe_00001_.png&type=temp&subfolder=&rand=0.6986920175644831"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_vqppe_00002_.png&type=temp&subfolder=&rand=0.6399770251528716"
+          }
+        ]
+      },
+      "image_a": [
+        "237",
+        0
+      ],
+      "image_b": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "Image Comparer (rgthree)"
+    }
+  },
+  "454": {
+    "inputs": {
+      "string": "Generate the hat within the masked area, scaling it to fit naturally on the character’s head based on their face and head proportions, not the mask size. For a baseball cap, follow these specific guidelines:\n\nScale the cap’s base to 70% of the forehead width (temple to temple) for a tight, natural fit.\nLimit the crown height to one-fifth of the face height (forehead to chin) to keep it proportional.\nExtend the brim forward no more than one-third of the nose length to avoid exaggeration.\nFill any extra mask space with hair or background elements; do not stretch or enlarge the cap to fit the mask.\nMaintain a structured, paneled crown and a stiff, slightly curved brim; do not distort the cap’s original shape.\nFor other hat types, scale and position naturally, preserving their original design. Ensure the hat blends seamlessly with the character’s head and surroundings.",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "459": {
+    "inputs": {
+      "string": "Tanke för\n17s\nExpandera för detaljer\nHär är den uppdaterade svenska prompten översatt till engelska, med alla detaljer och instruktioner bevarade:\n\nUpdated guiding prompt for handbag generation (all bags are held in the hand):\nGenerate the handbag based on the input image and maintain its original proportions. Identify the type of bag from the description provided by the Florence model and adjust its size and positioning according to the following guidelines, with the requirement that all bags must be held in the character's hand:\n\nClutch or bag without straps:\nScale the bag to be small, with the length approximately equal to the length of the character's hand from wrist to fingertips (about 10-12 cm for an average adult), and the height about half of that length (around 5-6 cm).\nThe character should hold the bag directly in their hand, as if comfortably gripping a small object. The bag should not appear oversized or bulky in the grip.\nTote bag:\nScale the bag to be medium-sized, with the width approximately half of the character's torso width to look natural when held in the hand.\nThe handles should be proportional to the size of the bag, with a \"drop length\" (the distance from the top of the handle to the top of the bag) of about 10-15 cm for an average adult, so that the character can comfortably hold the bag in their hand without it dragging or appearing too large. The handles should be about 2-3 cm wide to fit naturally in the hand.\nThe bag should appear as if it is being held by the handles, with the body of the bag resting naturally against the character's side or leg.\nCrossbody bag:\nScale the bag to be small to medium-sized, with the bag itself being about one-third of the character's torso width.\nSince the bag must be held in the hand, adjust the strap to be shorter or draped in a way that allows the character to hold the bag by the strap or directly by the bag itself. The strap should be thin to medium thickness (about 1-3 cm wide).\nThe bag should appear as if it is being carried in the hand, with the strap either folded or hanging naturally.\nBackpack:\nScale the bag to be small to medium-sized, so that it looks appropriate when held in the hand rather than worn on the back. The width should be about one-third to half of the character's torso.\nThe character should hold the backpack by one of the straps or by a top handle (if present). The straps should be proportional to the size of the bag, about 3-5 cm wide for an average adult.\nThe backpack should not appear oversized or cumbersome when held in the hand.\nShoulder bag:\nScale the bag to be medium-sized, with the width approximately half of the character's torso.\nAdjust the strap to be shorter, so that the character can hold the bag by the strap or directly by the bag. The strap width should be about 2-4 cm to look natural when gripped.\nThe bag should appear as if it is being held in the hand, with the strap either looped or held along with the bag.\nSatchel or messenger bag:\nScale the bag to be medium-sized, with the width approximately half of the character's torso.\nAdjust the strap to be shorter or folded, so that the character can hold the bag by the strap or directly by the bag. The strap width should be about 2-4 cm for a natural grip.\nThe bag should look as if it is being comfortably held in the hand, with the strap not too long or unwieldy.\nFor other bag types:\nScale the bag so that the part held by the character (e.g., handles, straps, or the bag itself) fits naturally in their hand.\nAdjust the rest of the bag proportionally, ensuring that any handles or straps are neither too large nor too small in relation to the character's hand and body.\nGeneral guidelines for handles and straps (when held in the hand):\nHandle thickness: Handles should be proportional to the size of the bag and the character's hand. For smaller bags, handles can be about 1-2 cm wide, and for larger bags, up to 3 cm. They should appear easy to grip without dominating the bag's design.\nStrap width: Straps should be wide enough to visually support the bag but not so wide that they look disproportionate when held (usually 1-3 cm for smaller bags, 2-4 cm for medium bags).\nNatural grip: The character should appear to hold the bag comfortably in their hand, with handles or straps fitting naturally in the grip, as if carrying the bag effortlessly.\nProportionality: The bag should always be proportional to the character's hand and body, looking realistic and neither too large nor too small in the context of the image.\nEnsure that the scale of the bag, especially the handles and straps, is adjusted to look realistic and natural when held in the character's hand, in relation to their body and the composition of the image.",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "470": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "471": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "AUTO"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "472": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 10,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "bbox_detector": [
+        "470",
+        0
+      ],
+      "image": [
+        "366",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "473": {
+    "inputs": {
+      "detection_hint": "center-1",
+      "dilation": 1,
+      "threshold": 0.93,
+      "bbox_expansion": 0,
+      "mask_hint_threshold": 0.7,
+      "mask_hint_use_negative": "False",
+      "sam_model": [
+        "471",
+        0
+      ],
+      "segs": [
+        "472",
+        0
+      ],
+      "image": [
+        "366",
+        0
+      ]
+    },
+    "class_type": "SAMDetectorCombined",
+    "_meta": {
+      "title": "SAMDetector (combined)"
+    }
+  },
+  "479": {
+    "inputs": {
+      "part1": [
+        "560",
+        0
+      ],
+      "part2": [
+        "554",
+        0
+      ],
+      "part3": "___promptText___",
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "485": {
+    "inputs": {
+      "string": "{image} ",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "487": {
+    "inputs": {
+      "string": " Generete the new hair that matches the provided description in terms of length, color, style, and texture. The hair should originate naturally from the character’s scalp and extend within the masked area, scaled proportionally to the character’s head and face. Ensure the hair flows naturally, leaving space as appropriate to maintain a realistic appearance based on the described style. Disregard the original hair entirely and base all visual attributes (color, style, texture) solely on the description. Do not alter the clothes or accessories within the masked area, transfer only the hair but retain all other feautures of the main image. If the haircolor is described as blonde make it very much lighter, if the haircolor is described as black, make it much darker, from roots to bottom of the hair.",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "489": {
+    "inputs": {
+      "segs": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "SegsToCombinedMask",
+    "_meta": {
+      "title": "SEGS to MASK (combined)"
+    }
+  },
+  "490": {
+    "inputs": {
+      "mask": [
+        "489",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "494": {
+    "inputs": {
+      "expand": 15,
+      "tapered_corners": true,
+      "mask": [
+        "317",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "495": {
+    "inputs": {
+      "string": "{image} ",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "496": {
+    "inputs": {
+      "mask": [
+        "391",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "497": {
+    "inputs": {
+      "string": " Generete the new hair that matches the provided description in terms of length, color, style, and texture. The hair should originate naturally from the character’s scalp and extend within the masked area, scaled proportionally to the character’s head and face. Ensure the hair flows naturally, leaving space as appropriate to maintain a realistic appearance based on the described style. Disregard the original hair entirely and base all visual attributes (color, style, texture) solely on the description. Do not alter the clothes or accessories within the masked area, transfer only the hair but retain all other feautures of the main image. If the haircolor is described as blonde make it very much lighter, if the haircolor is described as black, make it much darker, from roots to bottom of the hair.",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "498": {
+    "inputs": {
+      "string": "Make sure the necklace is applied around the neck of the person, make sure it hangs there and is visible.",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "499": {
+    "inputs": {
+      "string": "{image} ",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "500": {
+    "inputs": {
+      "masks": [
+        "151",
+        0
+      ]
+    },
+    "class_type": "Mask Fill Holes",
+    "_meta": {
+      "title": "Mask Fill Holes"
+    }
+  },
+  "501": {
+    "inputs": {
+      "key": "pipe106_ae_vae_flux"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "502": {
+    "inputs": {
+      "key": "pipe105_t5xxl_clip_I"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "503": {
+    "inputs": {
+      "number_of_faces": 1,
+      "scale_factor": 3,
+      "shift_factor": 0.5,
+      "start_index": 2,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "1:1",
+      "image": [
+        "518",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "504": {
+    "inputs": {
+      "number_of_faces": 1,
+      "scale_factor": 10,
+      "shift_factor": 0.5,
+      "start_index": 2,
+      "max_faces_per_image": 3,
+      "aspect_ratio": "3:2",
+      "image": [
+        "518",
+        0
+      ]
+    },
+    "class_type": "AutoCropFaces",
+    "_meta": {
+      "title": "Auto Crop Faces"
+    }
+  },
+  "505": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 608,
+      "height": 418,
+      "crop": "center",
+      "image": [
+        "504",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "506": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "width": 128,
+      "height": 128,
+      "crop": "disabled",
+      "image": [
+        "503",
+        0
+      ]
+    },
+    "class_type": "ImageScale",
+    "_meta": {
+      "title": "Upscale Image"
+    }
+  },
+  "507": {
+    "inputs": {
+      "images": [
+        "506",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "508": {
+    "inputs": {
+      "images": [
+        "505",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "509": {
+    "inputs": {
+      "filename": "___outputPrefix____608x1080",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 90,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "additional_hashes": "",
+      "images": [
+        "518",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "510": {
+    "inputs": {
+      "filename": "___outputPrefix____128x128",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 90,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "additional_hashes": "",
+      "images": [
+        "506",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "511": {
+    "inputs": {
+      "filename": "___outputPrefix____608x418",
+      "path": "",
+      "extension": "jpeg",
+      "steps": 20,
+      "cfg": 7,
+      "modelname": "",
+      "sampler_name": "",
+      "scheduler": "normal",
+      "positive": "unknown",
+      "negative": "unknown",
+      "seed_value": 0,
+      "width": 608,
+      "height": 1080,
+      "lossless_webp": true,
+      "quality_jpeg_or_webp": 90,
+      "optimize_png": false,
+      "counter": 0,
+      "denoise": 1,
+      "clip_skip": 0,
+      "time_format": "%Y-%m-%d-%H%M%S",
+      "save_workflow_as_json": false,
+      "embed_workflow_in_png": true,
+      "additional_hashes": "",
+      "images": [
+        "505",
+        0
+      ]
+    },
+    "class_type": "Image Saver",
+    "_meta": {
+      "title": "Image Saver"
+    }
+  },
+  "515": {
+    "inputs": {
+      "key": "pipe110_flux1-dev-fp8_12gb"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "518": {
+    "inputs": {
+      "width": 608,
+      "height": 1080,
+      "upscale_method": "lanczos",
+      "keep_proportion": true,
+      "divisible_by": 2,
+      "crop": "disabled",
+      "image": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "ImageResizeKJ",
+    "_meta": {
+      "title": "Resize Image"
+    }
+  },
+  "520": {
+    "inputs": {
+      "conditioning": [
+        "521",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "521": {
+    "inputs": {
+      "strength": 0.9,
+      "conditioning": [
+        "522",
+        0
+      ],
+      "style_model": [
+        "548",
+        0
+      ],
+      "clip_vision_output": [
+        "532",
+        0
+      ]
+    },
+    "class_type": "StyleModelApplyAdvanced",
+    "_meta": {
+      "title": "Style Model Apply Advanced"
+    }
+  },
+  "522": {
+    "inputs": {
+      "guidance": 40,
+      "conditioning": [
+        "544",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "523": {
+    "inputs": {
+      "noise_mask": true,
+      "positive": [
+        "521",
+        0
+      ],
+      "negative": [
+        "520",
+        0
+      ],
+      "vae": [
+        "635",
+        0
+      ],
+      "pixels": [
+        "6",
+        0
+      ],
+      "mask": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "InpaintModelConditioning",
+    "_meta": {
+      "title": "InpaintModelConditioning"
+    }
+  },
+  "530": {
+    "inputs": {
+      "samples": [
+        "531",
+        0
+      ],
+      "vae": [
+        "635",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "531": {
+    "inputs": {
+      "seed": ___seed___,
+      "steps": 12,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "533",
+        0
+      ],
+      "positive": [
+        "523",
+        0
+      ],
+      "negative": [
+        "523",
+        1
+      ],
+      "latent_image": [
+        "523",
+        2
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "532": {
+    "inputs": {
+      "crop": "none",
+      "clip_vision": [
+        "549",
+        0
+      ],
+      "image": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "CLIPVisionEncode",
+    "_meta": {
+      "title": "CLIP Vision Encode"
+    }
+  },
+  "533": {
+    "inputs": {
+      "model": [
+        "540",
+        0
+      ]
+    },
+    "class_type": "DifferentialDiffusion",
+    "_meta": {
+      "title": "Differential Diffusion"
+    }
+  },
+  "539": {
+    "inputs": {
+      "model": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "DitForwardOverrider",
+    "_meta": {
+      "title": "DitForwardOverrider"
+    }
+  },
+  "540": {
+    "inputs": {
+      "rel_l1_thresh": 0.4,
+      "start_at": 0,
+      "end_at": 1,
+      "model": [
+        "539",
+        0
+      ]
+    },
+    "class_type": "ApplyTeaCachePatchAdvanced",
+    "_meta": {
+      "title": "ApplyTeaCachePatchAdvanced"
+    }
+  },
+  "544": {
+    "inputs": {
+      "text": [
+        "435",
+        0
+      ],
+      "clip": [
+        "547",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "547": {
+    "inputs": {
+      "key": "pipe105_t5xxl_clip_I"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "548": {
+    "inputs": {
+      "key": "pipe111_redux_style_flux"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "549": {
+    "inputs": {
+      "key": "pipe112_slig_clip_vision_flux"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "551": {
+    "inputs": {
+      "select": [
+        "552",
+        0
+      ],
+      "sel_mode": false,
+      "input": [
+        "223",
+        0
+      ]
+    },
+    "class_type": "ImpactInversedSwitch",
+    "_meta": {
+      "title": "Inversed Switch (reference)"
+    }
+  },
+  "552": {
+    "inputs": {
+      "number": [
+        "553",
+        0
+      ]
+    },
+    "class_type": "Number to Int",
+    "_meta": {
+      "title": "Number to Int"
+    }
+  },
+  "553": {
+    "inputs": {
+      "int": ___contextValue2___
+    },
+    "class_type": "Int To Number (mtb)",
+    "_meta": {
+      "title": "Int To Number (mtb)"
+    }
+  },
+  "554": {
+    "inputs": {
+      "string": "",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Pre-prompt"
+    }
+  },
+  "555": {
+    "inputs": {
+      "text": [
+        "479",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "560": {
+    "inputs": {
+      "string": "{image} ",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Pre-prompt"
+    }
+  },
+  "592": {
+    "inputs": {
+      "images": [
+        "595",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "594": {
+    "inputs": {
+      "expand": 15,
+      "tapered_corners": true,
+      "mask": [
+        "595",
+        1
+      ]
+    },
+    "class_type": "GrowMask",
+    "_meta": {
+      "title": "GrowMask"
+    }
+  },
+  "595": {
+    "inputs": {
+      "Hat": true,
+      "Hair": true,
+      "Face": true,
+      "Sunglasses": false,
+      "Upper-clothes": true,
+      "Skirt": true,
+      "Dress": true,
+      "Belt": true,
+      "Pants": true,
+      "Left-arm": true,
+      "Right-arm": true,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": true,
+      "Scarf": false,
+      "Left-shoe": true,
+      "Right-shoe": true,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 20,
+      "background_color": "Alpha",
+      "invert_output": false,
+      "images": [
+        "605",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "596": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "Prefer GPU"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "597": {
+    "inputs": {
+      "detection_hint": "center-1",
+      "dilation": 1,
+      "threshold": 0.93,
+      "bbox_expansion": 0,
+      "mask_hint_threshold": 0.7,
+      "mask_hint_use_negative": "False",
+      "sam_model": [
+        "596",
+        0
+      ],
+      "segs": [
+        "599",
+        0
+      ],
+      "image": [
+        "605",
+        0
+      ]
+    },
+    "class_type": "SAMDetectorCombined",
+    "_meta": {
+      "title": "SAMDetector (combined)"
+    }
+  },
+  "599": {
+    "inputs": {
+      "threshold": 0.6,
+      "dilation": 8,
+      "crop_factor": 1,
+      "drop_size": 15,
+      "labels": "all",
+      "bbox_detector": [
+        "601",
+        0
+      ],
+      "image": [
+        "605",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "600": {
+    "inputs": {
+      "mask": [
+        "597",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "601": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "602": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "594",
+        0
+      ],
+      "source": [
+        "672",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "603": {
+    "inputs": {
+      "mask": [
+        "602",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "604": {
+    "inputs": {
+      "value": [
+        "310",
+        7
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "605": {
+    "inputs": {
+      "value": [
+        "604",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "608": {
+    "inputs": {
+      "value": [
+        "602",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "609": {
+    "inputs": {
+      "value": [
+        "608",
+        0
+      ]
+    },
+    "class_type": "ReroutePrimitive|pysssss",
+    "_meta": {
+      "title": "Reroute Primitive 🐍"
+    }
+  },
+  "610": {
+    "inputs": {
+      "key": "pipe107_florence2"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "611": {
+    "inputs": {
+      "text_input": "",
+      "task": "more_detailed_caption",
+      "fill_mask": true,
+      "keep_model_loaded": true,
+      "max_new_tokens": 1024,
+      "num_beams": 3,
+      "do_sample": true,
+      "output_mask_select": "",
+      "seed": 1,
+      "image": [
+        "671",
+        7
+      ],
+      "florence2_model": [
+        "610",
+        0
+      ]
+    },
+    "class_type": "Florence2Run",
+    "_meta": {
+      "title": "Florence2Run"
+    }
+  },
+  "612": {
+    "inputs": {
+      "part3": "{image} ",
+      "part4": [
+        "611",
+        2
+      ],
+      "separator": ""
+    },
+    "class_type": "CR Combine Prompt",
+    "_meta": {
+      "title": "⚙️ CR Combine Prompt"
+    }
+  },
+  "613": {
+    "inputs": {
+      "text": [
+        "612",
+        0
+      ],
+      "text2": ""
+    },
+    "class_type": "ShowText|pysssss",
+    "_meta": {
+      "title": "Show Text 🐍"
+    }
+  },
+  "622": {
+    "inputs": {
+      "threshold": 0.5,
+      "dilation": 10,
+      "crop_factor": 3,
+      "drop_size": 10,
+      "labels": "all",
+      "bbox_detector": [
+        "628",
+        0
+      ],
+      "image": [
+        "355",
+        0
+      ]
+    },
+    "class_type": "BboxDetectorSEGS",
+    "_meta": {
+      "title": "BBOX Detector (SEGS)"
+    }
+  },
+  "626": {
+    "inputs": {
+      "detection_hint": "center-1",
+      "dilation": 0,
+      "threshold": 0.93,
+      "bbox_expansion": 0,
+      "mask_hint_threshold": 0.7,
+      "mask_hint_use_negative": "False",
+      "sam_model": [
+        "627",
+        0
+      ],
+      "segs": [
+        "622",
+        0
+      ],
+      "image": [
+        "355",
+        0
+      ]
+    },
+    "class_type": "SAMDetectorCombined",
+    "_meta": {
+      "title": "SAMDetector (combined)"
+    }
+  },
+  "627": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "Prefer GPU"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "628": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "632": {
+    "inputs": {
+      "mask": [
+        "626",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "633": {
+    "inputs": {
+      "x": 0,
+      "y": 0,
+      "operation": "multiply",
+      "destination": [
+        "632",
+        0
+      ],
+      "source": [
+        "494",
+        0
+      ]
+    },
+    "class_type": "MaskComposite",
+    "_meta": {
+      "title": "MaskComposite"
+    }
+  },
+  "634": {
+    "inputs": {
+      "mask": [
+        "633",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "635": {
+    "inputs": {
+      "key": "pipe106_ae_vae_flux"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "657": {
+    "inputs": {
+      "x": 0,
+      "y": 60,
+      "angle": 0,
+      "duplication_factor": 1,
+      "roll": false,
+      "incremental": false,
+      "padding_mode": "empty",
+      "mask": [
+        "668",
+        0
+      ]
+    },
+    "class_type": "OffsetMask",
+    "_meta": {
+      "title": "Offset Mask"
+    }
+  },
+  "658": {
+    "inputs": {
+      "string": "{image} the image shows the character (holding:1.05) a bag by its straps in their hand. The character’s fingers are wrapped around the straps, gripping them securely, and the bag is hanging down from their hand beside their body. ",
+      "strip_newlines": true
+    },
+    "class_type": "StringConstantMultiline",
+    "_meta": {
+      "title": "Florence Guide Prompt"
+    }
+  },
+  "668": {
+    "inputs": {
+      "kernel_size": 50,
+      "sigma": 50,
+      "mask": [
+        "109",
+        0
+      ]
+    },
+    "class_type": "ImpactGaussianBlurMask",
+    "_meta": {
+      "title": "Gaussian Blur Mask"
+    }
+  },
+  "669": {
+    "inputs": {
+      "Hat": true,
+      "Hair": false,
+      "Face": true,
+      "Sunglasses": true,
+      "Upper-clothes": true,
+      "Skirt": true,
+      "Dress": true,
+      "Belt": true,
+      "Pants": true,
+      "Left-arm": true,
+      "Right-arm": true,
+      "Left-leg": true,
+      "Right-leg": true,
+      "Bag": true,
+      "Scarf": true,
+      "Left-shoe": true,
+      "Right-shoe": true,
+      "Background": false,
+      "process_res": 512,
+      "mask_blur": 0,
+      "mask_offset": 0,
+      "background_color": "gray",
+      "invert_output": false,
+      "images": [
+        "671",
+        0
+      ]
+    },
+    "class_type": "ClothesSegment",
+    "_meta": {
+      "title": "Clothes Segment (RMBG)"
+    }
+  },
+  "670": {
+    "inputs": {
+      "images": [
+        "669",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "671": {
+    "inputs": {
+      "select": [
+        "267",
+        0
+      ],
+      "sel_mode": false,
+      "input": [
+        "422",
+        0
+      ]
+    },
+    "class_type": "ImpactInversedSwitch",
+    "_meta": {
+      "title": "Inversed Switch (Wardrobe)"
+    }
+  },
+  "672": {
+    "inputs": {
+      "mask": [
+        "674",
+        0
+      ]
+    },
+    "class_type": "InvertMask",
+    "_meta": {
+      "title": "InvertMask"
+    }
+  },
+  "674": {
+    "inputs": {
+      "erode_dilate": -6,
+      "fill_holes": 2,
+      "remove_isolated_pixels": 2,
+      "smooth": 1,
+      "blur": 0,
+      "mask": [
+        "597",
+        0
+      ]
+    },
+    "class_type": "MaskFix+",
+    "_meta": {
+      "title": "🔧 Mask Fix"
+    }
+  },
+  "675": {
+    "inputs": {
+      "mask": [
+        "674",
+        0
+      ]
+    },
+    "class_type": "MaskPreview+",
+    "_meta": {
+      "title": "🔧 Mask Preview"
+    }
+  },
+  "676": {
+    "inputs": {
+      "erode_dilate": -6,
+      "fill_holes": 2,
+      "remove_isolated_pixels": 2,
+      "smooth": 1,
+      "blur": 0
+    },
+    "class_type": "MaskFix+",
+    "_meta": {
+      "title": "🔧 Mask Fix"
+    }
+  }
+}

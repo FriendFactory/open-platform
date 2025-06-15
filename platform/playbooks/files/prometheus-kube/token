@@ -1,0 +1,2 @@
+{% set token=lookup('aws_ssm', '/prometheus-service-account-token/{{ env }}', region='eu-central-1', aws_profile='frever') %}
+{{ token }}

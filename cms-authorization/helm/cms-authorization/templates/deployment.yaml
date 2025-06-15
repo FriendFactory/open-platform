@@ -1,0 +1,55 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/commit-id: {{ .Values.app.gitCommit }}
+  labels:
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
+    app.kubernetes.io/name: cms-authorization
+  name: cms-authorization
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cms-authorization
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/commit-id: {{ .Values.app.gitCommit }}
+      labels:
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
+        app.kubernetes.io/name: cms-authorization
+    spec:
+      nodeSelector:
+        AppGroup: internal
+      containers:
+        - env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: "722913253728.dkr.ecr.eu-central-1.amazonaws.com/cms-authorization:{{ .Values.app.imageTag }}"
+          imagePullPolicy: Always
+          name: cms-authorization
+          ports:
+            - containerPort: 8080
+              name: http
+          livenessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: /api
+              port: http
+          readinessProbe:
+            initialDelaySeconds: 10
+            httpGet:
+              path: /api
+              port: http
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 300m
+              memory: 512Mi

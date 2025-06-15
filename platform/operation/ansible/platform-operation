@@ -1,0 +1,13 @@
+/home/ec2-user/platform-operation-out.log
+{
+  rotate 21
+  daily
+  compress
+  missingok
+  notifempty
+  postrotate
+    systemctl restart rsyslog.service
+    systemctl restart frever-platform-operation-runner.service
+  endscript
+  create 0640 ec2-user ec2-user
+}

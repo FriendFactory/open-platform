@@ -1,0 +1,60 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: yes
+
+  tasks:
+    - amazon.aws.ec2_metadata_facts:
+      tags:
+        - always
+
+    - name: Install iptables-services
+      dnf:
+        name: iptables-services
+        update_cache: yes
+
+    - name: enable iptables service
+      become: true
+      ansible.builtin.service:
+        name: iptables
+        enabled: yes
+        state: started
+
+    - name: set net.ipv4.ip_forward
+      become: true
+      ansible.posix.sysctl:
+        name: net.ipv4.ip_forward
+        value: '1'
+        sysctl_set: true
+        state: present
+        reload: true
+        sysctl_file: "/etc/sysctl.d/custom-ip-forwarding.conf"
+
+    - name: get primary network interface
+      shell: netstat -i | grep -v lo | grep -v docker | grep -v veth | awk 'NR>2 {print $1}'
+      register: network_interface
+
+    - name: set primary network interface variable
+      set_fact:
+        network_interface: "{{ network_interface.stdout }}"
+
+    - name: iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE
+      ansible.builtin.iptables:
+        table: nat
+        action: append
+        chain: POSTROUTING
+        out_interface: "{{ network_interface }}"
+        protocol: all
+        jump: MASQUERADE
+      become: yes
+
+    - name: Iptables flush filter (iptables -F FORWARD)
+      ansible.builtin.iptables:
+        chain: "FORWARD"
+        flush: yes
+      become: yes
+
+    - name: save iptables
+      command: service iptables save
+      become: yes
+

@@ -1,0 +1,101 @@
+---
+- name: Download and unpack kafka
+  hosts: all
+  gather_facts: false
+  vars:
+    kafka_version: "2.8.1"
+    kafka_path: "/home/ec2-user"
+    aws_msk_iam_auth_version: "1.1.6"
+    aws_msk_iam_auth_checksum: "98554eb9b3f51e15a9a00589b25cd97fda0836c6a239c546e54d96d581b0602c"
+
+  tasks:
+    - name: Set correct hostname
+      become: true
+      ansible.builtin.hostname:
+        name: msk-client
+
+    - name: Check Kafka existence
+      stat:
+        path: "{{ kafka_path }}/kafka_2.13-{{ kafka_version }}"
+      register: kafka_exist
+      tags: kafka
+
+    - name: Extract kafka binary
+      ansible.builtin.unarchive:
+        src: "https://archive.apache.org/dist/kafka/{{ kafka_version }}/kafka_2.13-{{ kafka_version }}.tgz"
+        dest: "{{ kafka_path }}"
+        remote_src: yes
+      when: kafka_exist.stat.exists is false
+      tags: kafka
+
+    - name: Check aws-msk-iam-auth jar existence
+      stat:
+        path: "{{ kafka_path }}/kafka_2.13-{{ kafka_version }}/libs/aws-msk-iam-auth-{{ aws_msk_iam_auth_version }}-all.jar"
+      register: aws_msk_iam_auth_jar_exist
+      tags: msk_iam
+
+    - name: Download aws-msk-iam-auth jar file
+      ansible.builtin.get_url:
+        url: "https://github.com/aws/aws-msk-iam-auth/releases/download/v{{ aws_msk_iam_auth_version }}/aws-msk-iam-auth-{{ aws_msk_iam_auth_version }}-all.jar"
+        dest: "{{ kafka_path }}/kafka_2.13-{{ kafka_version }}/libs"
+        checksum: "sha256:{{ aws_msk_iam_auth_checksum }}"
+      when: aws_msk_iam_auth_jar_exist.stat.exists is false
+      tags: msk_iam
+
+    - name: Install Amazon Corretto 11 & nc
+      become: true
+      dnf:
+        name:
+          - java-11-amazon-corretto
+          - nc
+
+    - name: Copy client.properties file
+      ansible.builtin.copy:
+        src: client.properties
+        dest: "{{ kafka_path }}"
+        mode: 0644
+      when: aws_msk_iam_auth_jar_exist.stat.exists is false
+      tags: msk_iam
+
+    - name: Create .bashrc.d folder
+      file:
+        path: "{{ kafka_path }}/.bashrc.d/"
+        mode: 0755
+        group: ec2-user
+        owner: ec2-user
+        state: directory
+      tags: [ kafka ]
+
+    - name: Create a rc file adding kafka bin to PATH
+      ansible.builtin.template:
+        src: kafka-client-path
+        dest: "{{ kafka_path }}/.bashrc.d/kafka-client-path"
+        group: ec2-user
+        owner: ec2-user
+        mode: '0644'
+      tags: [ kafka ]
+
+    - name: Install pip3 and Git
+      become: true
+      dnf:
+        name:
+          - python3-pip
+          - git
+      tags: [ python ]
+
+    - name: Install and upgrade pip
+      pip:
+        name: pip
+        extra_args: --upgrade
+        executable: pip3
+      tags: [ python ]
+
+    - name: Install Python libraries
+      pip:
+        name: 
+          - boto3
+          - botocore
+          - gremlinpython
+          - backoff
+      tags: [ python ]
+

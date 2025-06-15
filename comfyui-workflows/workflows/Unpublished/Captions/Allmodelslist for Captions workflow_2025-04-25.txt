@@ -1,0 +1,72 @@
+Allmodelslist for Captions workflow
+
+custom_nodes used:
+
+ComfyUI Whisper (models downloaded automatically)
+## download from: https://github.com/yuvraj108c/ComfyUI-Whisper
+## or via ComfyUI Manager
+
+ComfyUI Impact Pack
+## download from: https://github.com/ltdrdata/ComfyUI-Impact-Pack
+## or via ComfyUI Manager
+
+ComfyUI_AceNodes
+## download from: https://github.com/hay86/ComfyUI_AceNodes
+
+Comfyroll Studio
+## download from: https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes
+## or via ComfyUI Manager
+
+ComfyUI-VideoHelperSuite
+## download from: https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite
+## or via ComfyUI Manager
+
+rgthree's ComfyUI Nodes
+## download from: https://github.com/rgthree/rgthree-comfy
+## or via ComfyUI Manager
+
+ComfyUI-Jjk-Nodes
+## download from: https://github.com/jjkramhoeft/ComfyUI-Jjk-Nodes
+## or via ComfyUI Manager
+
+KJNodes for ComfyUI
+## download from: https://github.com/kijai/ComfyUI-KJNodes
+## or via ComfyUI Manager
+
+ComfyUI-TextOverlay
+## download from: https://github.com/Munkyfoot/ComfyUI-TextOverlay
+## or via ComfyUI Manager
+
+ComfyUI-list-filter
+## download from: https://github.com/Kesin11/ComfyUI-list-filter
+## or via comfyui manager
+
+ComfyUI-Custom-Scripts
+## download from: https://github.com/pythongosssss/ComfyUI-Custom-Scripts
+## or via ComfyUI Manager
+
+ComfyUI-List-Utils -??
+ComfyUI-SoundHub - ??
+ComfyUI-speech-dataset-toolkit ???
+
+
+Used fonts:
+1_IBMPlexSans_SemiCondensed-Bold
+2_Bangers-Regular
+3_GrapeNuts-Regular
+4_Koshari
+5_Eracake
+6_Angelos
+7_Cream-Cake-Bold
+8_Happy Memories
+
+They need to be placed in 2 folders.
+
+Place them in: 
+/workspace/ComfyUI/custom_nodes/ComfyUI-TextOverlay/fonts
+
+and also in:
+
+/workspace/ComfyUI/custom_nodes/ComfyUI-Whisper/fonts
+
+Make sure they are named with the correct prefix. 1_, 2_, 3_ etc.

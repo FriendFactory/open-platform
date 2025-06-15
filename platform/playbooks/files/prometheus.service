@@ -1,0 +1,16 @@
+[Unit]
+Description=Prometheus service
+Wants=network.target cloud-config.service
+After=network.target syslog.target
+
+[Service]
+User=prometheus
+Group=prometheus
+Restart=always
+RestartSec=10
+StartLimitBurst=5
+ExecStart={{ prometheus_path }}/prometheus --config.file={{ prometheus_path }}/{{ prometheus_config_file }} --storage.tsdb.path={{ prometheus_path }}/data --storage.tsdb.retention.time={{ prometheus_configuration[env].retention }}
+
+[Install]
+WantedBy=multi-user.target
+

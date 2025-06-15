@@ -1,0 +1,44 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+exporters:
+  otlp/jaeger:
+    tls:
+      insecure: true
+    endpoint: http://jaeger:4317
+
+processors:
+  tail_sampling:
+    decision_wait: 30s
+    num_traces: 50000
+    expected_new_traces_per_sec: 100
+    policies:
+      [
+        {
+          name: errors-policy,
+          type: status_code,
+          status_code: { status_codes: [ERROR] },
+          # status_code: { status_codes: [ERROR, UNSET] },
+        },
+        # {
+        #   name: randomized-policy,
+        #   type: probabilistic,
+        #   probabilistic: { sampling_percentage: 20 },
+        # },
+        {
+          name: latency-policy,
+          type: latency,
+          latency: { threshold_ms: {{ otelcol_latency_threshold[env] }} }
+        }
+      ]
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [otlp/jaeger]
+      processors: [tail_sampling]
+

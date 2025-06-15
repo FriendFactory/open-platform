@@ -1,0 +1,138 @@
+{
+  "3": {
+    "inputs": {
+      "min_resolution": 576,
+      "duration": 15,
+      "expand_ratio": 0.5,
+      "clip_vision": [
+        "28",
+        0
+      ],
+      "vae": [
+        "27",
+        0
+      ],
+      "audio": [
+        "30",
+        0
+      ],
+      "image": [
+        "11",
+        0
+      ],
+      "weight_dtype": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "SONIC_PreData",
+    "_meta": {
+      "title": "SONIC_PreData"
+    }
+  },
+  "5": {
+    "inputs": {
+      "seed": ___seed___,
+      "inference_steps": 16,
+      "dynamic_scale": 1,
+      "fps": 25,
+      "model": [
+        "29",
+        0
+      ],
+      "data_dict": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "SONICSampler",
+    "_meta": {
+      "title": "SONICSampler"
+    }
+  },
+  "11": {
+    "inputs": {
+      "image": "___input___"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "15": {
+    "inputs": {
+      "frame_rate": [
+        "5",
+        1
+      ],
+      "loop_count": 0,
+      "filename_prefix": "___outputPrefix___",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": true,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "images": [
+        "5",
+        0
+      ],
+      "audio": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "Video Combine 🎥🅥🅗🅢"
+    }
+  },
+  "26": {
+    "inputs": {
+      "key": "pipe202_lip-sync_svd_unet_dtype"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "27": {
+    "inputs": {
+      "key": "pipe204_lip-sync_svd_vae"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "28": {
+    "inputs": {
+      "key": "pipe203_lip-sync_svd_clip_vision"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "29": {
+    "inputs": {
+      "key": "pipe201_lip-sync_svd_unet_model"
+    },
+    "class_type": "RetrieveBackendData //Inspire",
+    "_meta": {
+      "title": "Retrieve Backend Data (Inspire)"
+    }
+  },
+  "30": {
+    "inputs": {
+      "audio": "___audio___",
+      "start_time": ___startTime___,
+      "duration": ___duration___
+    },
+    "class_type": "VHS_LoadAudioUpload",
+    "_meta": {
+      "title": "Load Audio (Upload)🎥🅥🅗🅢"
+    }
+  }
+}
