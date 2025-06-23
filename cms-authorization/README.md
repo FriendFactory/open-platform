@@ -1,5 +1,7 @@
 # cms-authorization
 
+This service is used to do permission control for [CMS](https://github.com/FriendFactory/frever-open-cms) and [IXIA-CMS](https://github.com/FriendFactory/ixia-open-cms).
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .

@@ -1,5 +1,7 @@
 # operation Project
 
+This service is used to run status checks against Frever production PostgreSQL DB, make sure user generated videos etc are removed from S3 bucket when the user deletes Frever account, and remove old message (older than 30 days) from Twilio. 
+
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
